@@ -1,3 +1,17 @@
 // ===========================================
 // MAIN SCSS FILE
 // ===========================================
+// abstracts
+@use "abstracts";
+
+// base
+@use "base";
+
+// layout
+@use "layout";
+
+// components
+@use "components";
+
+// pages
+@use "pages";

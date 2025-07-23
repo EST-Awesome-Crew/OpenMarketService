@@ -4,8 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- css 아직 적용 안되어있습니다. -->
+    <link rel="stylesheet" href="#" />
+    <style>
+      main {
+        width: 100%;
+      }
+      .carousel-container {
+        display: flex;
+        flex-direction: row;
+      }
+      .carousel-slide {
+        width: 300%;
+      }
+      .product-container {
+        margin-top: 80px;
+      }
+    </style>
   </head>
   <body>
-    <h1>홈페이지 메인 페이지입니다.</h1>
+    <header id="header"></header>
+    <main>
+      <!-- 캐러셀 섹션입니다. -->
+      <section class="carousel-container">
+        <button type="button" class="carousel-container_button1">
+          <img src="../assets/icons/icon-swiper-1.svg" alt="이전" />
+        </button>
+        <div class="carousel-slide"></div>
+        <button type="button" class="carousel-container_button2">
+          <img src="../assets/icons/icon-swiper-2.svg" alt="다음" />
+        </button>
+      </section>
+      <!-- 상품 목록 섹션입니다. -->
+      <section class="product-container">
+        <ul class="product-container__list"></ul>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+    <script src="../js/pages/main/main.js"></script>
   </body>
 </html>
