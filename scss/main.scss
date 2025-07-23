@@ -1,3 +1,27 @@
 // ===========================================
 // MAIN SCSS FILE
 // ===========================================
+// abstracts
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/functions";
+
+// base
+@use "base/reset";
+@use "base/typography";
+@use "base/base";
+
+// layout
+@use "layout/header";
+@use "layout/footer";
+@use "layout/grid";
+
+// components
+@use "components/buttons";
+@use "components/cards";
+@use "components/forms";
+
+// pages
+@use "pages/home";
+@use "pages/product";
+@use "pages/cart";
