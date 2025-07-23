@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HODU</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+      }
+
+      .contents {
+        width: 100vw;
+        padding: 0 10vw;
+      }
+
+      .product-detail {
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+      }
+
+      .product-detail__image {
+        width: 600px;
+        aspect-ratio: 1 / 1;
+        margin-right: 50px;
+      }
+
+      .product-detail__summary {
+        min-width: 630px;
+        min-height: 600px;
+      }
+
+      .product-detail__category {
+        font-size: 1.125rem;
+        color: #767676;
+      }
+
+      .product-detail__name {
+        font-size: 2.25rem;
+        font-weight: 400;
+      }
+
+      .product-detail__price :first-child {
+        font-size: 2.25rem;
+        font-weight: 700;
+      }
+
+      .product-detail__price :last-child {
+        font-size: 1.125rem;
+      }
+
+      .product-detail__delivery-cost {
+        color: #767676;
+        font-size: 1rem;
+        margin: 138px 0 20px;
+      }
+
+      hr {
+        line-height: 2px;
+      }
+
+      .product-detail__quantity {
+        margin: 30px 0;
+
+        height: 50px;
+        padding: 0;
+
+        display: flex;
+      }
+
+      .product-detail__quantity>* {
+        width: 50px;
+        border: 1px solid black;
+        margin: 0;
+      }
+
+      .product-detail__quantity-decrease {
+        border: 1px solid #c4c4c4;
+        border-radius: 5px 0 0 5px;
+
+        background-color: white;
+        background-image: url(../assets/icons/icon-minus-line.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .product-detail__quantity-count {
+        border: 1px 0 solid #c4c4c4;
+      }
+
+      .product-detail__quantity-increase {
+        border: 1px solid #c4c4c4;
+        border-radius: 0 5px 5px 0;
+        background-color: white;
+        background-image: url(../assets/icons/icon-plus-line.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="product-detail">
+      <div class="product-detail">
+        <img class="product-detail__image" src="../assets/images/blankit.png" alt="상품 사진">
+        <div class="product-detail__summary">
+          <p class="product-detail__category">백엔드 글로벌</p>
+          <h2 class="product-detail__name">딥러닝 개발자 무릎 담요</h2>
+          <p class="product-detail__price"><span>17,500</span><span>원</span></p>
+
+          <p class="product-detail__delivery-cost">택배배송 / 무료배송</p>
+          <hr>
+          <div class="product-detail__quantity">
+            <button class="product-detail__quantity-decrease"></button>
+            <input type="number" class="product-detail__quantity-count">
+            <button class="product-detail__quantity-increase"></button>
+          </div>
+
+          <hr>
+          <div class="product-detail__actions">
+            <button class="product-detail__buy-now">바로 구매</button>
+            <button class="product-detail__add-to-cart">장바구니</button>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="product-detail__tabs">
+      </div>
+    </section>
+  </body>
+
+</html>
