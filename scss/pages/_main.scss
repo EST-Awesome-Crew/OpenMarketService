@@ -36,9 +36,9 @@ main {
 .product-item {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 
   &__text-container {
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
