@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HODU</title>
     <style>
+      :root {
+        --main-color: #21BF48;
+        --lightgray: #c4c4c4;
+        --gray: #767676;
+
+        --sm-font-size: 1rem;
+        --md-font-size: 1.125rem;
+        --lg-font-size: 2.25rem;
+      }
+
       body {
         margin: 0;
         padding: 0;
@@ -93,6 +103,7 @@
 
       .product-detail__quantity-count {
         border: 1px 0 solid #c4c4c4;
+        text-align: center;
       }
 
       .product-detail__quantity-increase {
@@ -103,27 +114,95 @@
         background-repeat: no-repeat;
         background-position: center;
       }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .product-detail__price-result {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.125rem;
+        margin: 32px 0 22px;
+        line-height: 2.25rem;
+      }
+
+      .product-detail__price-meta {
+        display: flex;
+      }
+
+      .divider {
+        margin: 0 11px;
+      }
+
+      .bold500 {
+        font-weight: 500;
+      }
+
+      .bold700 {
+        font-weight: 700;
+      }
+
+      .green {
+        color: #21BF48;
+      }
+
+      .lightgray {
+        color: #c4c4c4;
+      }
+
+      .gray {
+        color: #767676;
+      }
+
+      .xl-font {
+        font-size: 2.25rem;
+      }
     </style>
   </head>
 
   <body>
     <section class="product-detail">
-      <div class="product-detail">
+      <div class="product-detail__container">
         <img class="product-detail__image" src="../assets/images/blankit.png" alt="상품 사진">
         <div class="product-detail__summary">
           <p class="product-detail__category">백엔드 글로벌</p>
           <h2 class="product-detail__name">딥러닝 개발자 무릎 담요</h2>
-          <p class="product-detail__price"><span>17,500</span><span>원</span></p>
+          <p class="product-detail__price"><span class="xl-font">17,500</span><span>원</span></p>
 
-          <p class="product-detail__delivery-cost">택배배송 / 무료배송</p>
+          <p class="product-detail__delivery-cost">
+            <span>택배배송</span>
+            <span class="divider" aria-hidden="true">/</span>
+            <span>무료배송</span>
+          </p>
+
           <hr>
           <div class="product-detail__quantity">
             <button class="product-detail__quantity-decrease"></button>
             <input type="number" class="product-detail__quantity-count">
             <button class="product-detail__quantity-increase"></button>
           </div>
-
           <hr>
+
+          <div class="product-detail__price-result">
+            <span class="product-detail__price-label bold500">총 상품 금액</span>
+
+            <div class="product-detail__price-meta">
+              <span class="product-detail__quantity-result gray">
+                총 수량 <span class="product-detail__quantity-count-result green bold700">1</span>개
+              </span>
+
+              <span class="divider lightgray" aria-hidden="true">|</span>
+
+              <div class="product-detail__total-price green">
+                <span class="product-detail__price-number xl-font">17,500</span>
+                <span class="product-detail__price-unit">원</span>
+              </div>
+            </div>
+          </div>
+
           <div class="product-detail__actions">
             <button class="product-detail__buy-now">바로 구매</button>
             <button class="product-detail__add-to-cart">장바구니</button>
