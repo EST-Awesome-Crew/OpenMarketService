@@ -1,9 +1,14 @@
-//캐러셀 관련 기능을 초기화하는 함수
+//캐러셀 동작을 위한 함수
 export function carouselControl() {
   const carouselButton1 = document.querySelector(".carousel-container_button1");
   const carouselButton2 = document.querySelector(".carousel-container_button2");
   const carouselSlide = document.querySelector(".carousel-slide");
+  const carouselIndicator = document.querySelector(
+    ".carousel-container_indicator"
+  );
   let count = 0;
+
+  //캐러셀 이미지 배열
   const carouselImage = [
     "../../../assets/images/blankit.png",
     "../../../assets/images/keyling.jpg",
@@ -25,17 +30,29 @@ export function carouselControl() {
       if (count > imageLength) count = 0;
     }
     carouselSlide.style.transform = `translateX(-${count * 100}%)`;
+    renderCarouselIndicator();
   }
 
-  //캐러셀의 이미지를 만드는 함수
-
+  /**
+   * 캐러셀 이미지 베열을 순회하면서 li로 이미지를 추가하는 함수
+   */
   function renderCarouselImages() {
     carouselSlide.innerHTML = carouselImage
       .map(v => `<li class="carousel-image"><img src="${v}" alt=""></li>`)
       .join("");
   }
 
+  function renderCarouselIndicator() {
+    carouselIndicator.innerHTML = carouselImage
+      .map(
+        (_, i) =>
+          `<span class="indicator${i === count ? " active" : ""}"></span>`
+      )
+      .join("");
+  }
+
   renderCarouselImages();
+  renderCarouselIndicator();
   carouselButton1?.addEventListener("click", () => {
     carouselButton(carouselButton1);
   });
