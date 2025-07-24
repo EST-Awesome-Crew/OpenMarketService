@@ -1,0 +1,60 @@
+// ===========================================
+// MAIN PAGE
+// ===========================================
+main {
+  width: 100%;
+}
+.carousel-container {
+  display: flex;
+  height: 500px;
+  background-color: #eee;
+  flex-direction: row;
+
+  & button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+  }
+}
+.carousel-slide {
+  width: 300%;
+}
+.product-container {
+  display: flex;
+  justify-content: center;
+
+  &__list {
+    margin-top: 80px;
+    margin-bottom: 180px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+  }
+}
+.product-item {
+  display: flex;
+  flex-direction: column;
+
+  &__text-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__seller {
+    font-size: 16px;
+    font-weight: 400;
+    color: #767676;
+  }
+  &__name {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  &__price {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
