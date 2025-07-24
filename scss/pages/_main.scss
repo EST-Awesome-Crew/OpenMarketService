@@ -6,6 +6,7 @@ main {
 }
 .carousel-container {
   position: relative;
+  overflow: hidden;
   height: 500px;
   display: flex;
   flex-direction: row;
@@ -60,6 +61,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
     bottom: -20px;
+    z-index: 10;
   }
 }
 .carousel-container_indicator {
