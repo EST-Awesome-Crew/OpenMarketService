@@ -61,6 +61,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
     bottom: -20px;
+    z-index: 10;
   }
 }
 .carousel-container_indicator {
