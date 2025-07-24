@@ -12,6 +12,7 @@
       <input
         type="text"
         class="header__search-input"
+        name="search-input"
         placeholder="상품을 검색해보세요!"
       />
       <button type="submit" class="header__search-btn" aria-label="검색">
@@ -21,21 +22,27 @@
   </div>
   <ul class="header__menu">
     <li class="header__menu-item">
-      <img
-        src="../../assets/icons/icon-shopping-cart.svg "
-        alt="장바구니 아이콘"
-      />
-      <span class="header__menu-text">장바구니</span>
+      <a href="#" class="header__menu-link">
+        <img
+          src="../../assets/icons/icon-shopping-cart.svg "
+          alt="장바구니 아이콘"
+        />
+        <span class="header__menu-text header__menu-cart">장바구니</span>
+      </a>
     </li>
     <li class="header__menu-item">
-      <img src="../../assets/icons/icon-user.svg " alt="마이페이지 아이콘" />
-      <span class="header__menu-text">마이페이지</span>
+      <a href="#" class="header__menu-link">
+        <img src="../../assets/icons/icon-user.svg " alt="마이페이지 아이콘" />
+        <span class="header__menu-text header__menu-mypage">마이페이지</span>
+      </a>
     </li>
     <li class="header__menu-item header__seller-item">
-      <img
-        src="../../assets/icons/icon-seller-button.svg"
-        alt="판매자 센터 아이콘"
-      />
+      <a href="#" class="header__menu-link"></a>
+        <img
+          src="../../assets/icons/icon-seller-button.svg"
+          alt="판매자 센터 아이콘"
+        />
+      </a>
     </li>
   </ul>
 </header>
