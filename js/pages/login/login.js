@@ -82,7 +82,7 @@ async function login() {
     if (data.access && data.refresh) {
       saveTokens(data.access, data.refresh);
       localStorage.setItem("user", JSON.stringify(data.user));
-      window.location.href = "/pages/main.html";
+      window.history.back();
     } else if (data.error) {
       alert(data.error);
     }
