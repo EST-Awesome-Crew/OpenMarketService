@@ -10,10 +10,15 @@
         --main-color: #21BF48;
         --lightgray: #c4c4c4;
         --gray: #767676;
+        --white: #ffffff;
 
         --sm-font-size: 1rem;
         --md-font-size: 1.125rem;
         --lg-font-size: 2.25rem;
+
+        --default-font: 400;
+        --light-font: 500;
+        --heavy-font: 700;
       }
 
       body {
@@ -29,7 +34,7 @@
         padding: 0 10vw;
       }
 
-      .product-detail {
+      .product-detail__container {
         display: flex;
         justify-content: center;
 
@@ -45,6 +50,9 @@
       .product-detail__summary {
         min-width: 630px;
         min-height: 600px;
+
+        display: flex;
+        flex-direction: column;
       }
 
       .product-detail__category {
@@ -72,8 +80,10 @@
         margin: 138px 0 20px;
       }
 
-      hr {
-        line-height: 2px;
+      .section-divider {
+        width: 100%;
+        height: 2px;
+        background-color: var(--lightgray);
       }
 
       .product-detail__quantity {
@@ -102,7 +112,9 @@
       }
 
       .product-detail__quantity-count {
-        border: 1px 0 solid #c4c4c4;
+        border: 0;
+        border-top: 1px solid var(--lightgray);
+        border-bottom: 1px solid var(--lightgray);
         text-align: center;
       }
 
@@ -126,39 +138,60 @@
         justify-content: space-between;
         font-size: 1.125rem;
         margin: 32px 0 22px;
-        line-height: 2.25rem;
+        line-height: var(--lg-font-size);
       }
 
       .product-detail__price-meta {
         display: flex;
       }
 
+      .product-detail__quantity-result {
+        color: var(--gray);
+        font-size: var(--md-font-size);
+      }
+
+      .product-detail__price-label {
+        font-weight: var(--light-font);
+        font-size: var(--md-font-size);
+      }
+
+      .product-detail__quantity-count-result {
+        color: var(--main-color);
+        font-weight: var(--heavy-font);
+      }
+
       .divider {
         margin: 0 11px;
+        color: var(--lightgray);
       }
 
-      .bold500 {
-        font-weight: 500;
+      .product-detail__total-price {
+        color: var(--main-color);
       }
 
-      .bold700 {
-        font-weight: 700;
+      .product-detail__price-number {
+        font-size: var(--lg-font-size);
+        font-weight: var(--heavy-font);
       }
 
-      .green {
-        color: #21BF48;
+      .product-detail__actions>button {
+        height: 60px;
+        border: 0;
+        border-radius: 5px;
+        font-size: var(--md-font-size);
+        font-weight: var(--heavy-font);
+        color: var(--white);
       }
 
-      .lightgray {
-        color: #c4c4c4;
+      .product-detail__buy-now {
+        width: 416px;
+        margin-right: 14px;
+        background-color: var(--main-color);
       }
 
-      .gray {
-        color: #767676;
-      }
-
-      .xl-font {
-        font-size: 2.25rem;
+      .product-detail__add-to-cart {
+        width: 200px;
+        background-color: var(--gray);
       }
     </style>
   </head>
@@ -178,26 +211,26 @@
             <span>무료배송</span>
           </p>
 
-          <hr>
+          <span class="section-divider" aria-hidden="true"></span>
           <div class="product-detail__quantity">
             <button class="product-detail__quantity-decrease"></button>
-            <input type="number" class="product-detail__quantity-count">
+            <input type="number" class="product-detail__quantity-count" value="1">
             <button class="product-detail__quantity-increase"></button>
           </div>
-          <hr>
+          <span class="section-divider" aria-hidden="true"></span>
 
           <div class="product-detail__price-result">
-            <span class="product-detail__price-label bold500">총 상품 금액</span>
+            <span class="product-detail__price-label">총 상품 금액</span>
 
             <div class="product-detail__price-meta">
-              <span class="product-detail__quantity-result gray">
-                총 수량 <span class="product-detail__quantity-count-result green bold700">1</span>개
+              <span class="product-detail__quantity-result">
+                총 수량 <span class="product-detail__quantity-count-result">1</span>개
               </span>
 
               <span class="divider lightgray" aria-hidden="true">|</span>
 
-              <div class="product-detail__total-price green">
-                <span class="product-detail__price-number xl-font">17,500</span>
+              <div class="product-detail__total-price">
+                <span class="product-detail__price-number">17,500</span>
                 <span class="product-detail__price-unit">원</span>
               </div>
             </div>
