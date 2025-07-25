@@ -13,7 +13,6 @@
 
     <title>상품 상세 페이지 : HODU</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/product-detail.css">
   </head>
 
   <body>
@@ -21,57 +20,20 @@
     <main>
       <section class="product-detail">
         <div class="product-detail__container">
-          <img class="product-detail__image" src="../assets/images/blankit.png" alt="상품 사진">
-          <div class="product-detail__summary">
-            <p class="product-detail__category">백엔드 글로벌</p>
-            <h2 class="product-detail__name">딥러닝 개발자 무릎 담요</h2>
-            <p class="product-detail__price"><span class="xl-font">17,500</span><span>원</span></p>
-
-            <p class="product-detail__delivery-cost">
-              <span>택배배송</span>
-              <span class="divider" aria-hidden="true">/</span>
-              <span>무료배송</span>
-            </p>
-
-            <span class="section-divider" aria-hidden="true"></span>
-            <div class="product-detail__quantity">
-              <button class="product-detail__quantity-decrease"></button>
-              <input type="number" class="product-detail__quantity-count" value="1">
-              <button class="product-detail__quantity-increase"></button>
-            </div>
-            <span class="section-divider" aria-hidden="true"></span>
-
-            <div class="product-detail__price-result">
-              <span class="product-detail__price-label">총 상품 금액</span>
-
-              <div class="product-detail__price-meta">
-                <span class="product-detail__quantity-result">
-                  총 수량 <span class="product-detail__quantity-count-result">1</span>개
-                </span>
-
-                <span class="divider lightgray" aria-hidden="true">|</span>
-
-                <div class="product-detail__total-price">
-                  <span class="product-detail__price-number">17,500</span>
-                  <span class="product-detail__price-unit">원</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-detail__actions">
-              <button class="product-detail__buy-now">바로 구매</button>
-              <button class="product-detail__add-to-cart">장바구니</button>
-            </div>
-          </div>
-        </div>
-        <div class="product-detail__tabs">
 
         </div>
+
+        <nav class="product-tab">
+          <ul class="product-tab__list">
+
+          </ul>
+        </nav>
+
       </section>
     </main>
 
     <footer id="footer"></footer>
-    <script src="../js/pages/product_detail/productDetail.js"></script>
+    <script type="module" src="../js/pages/product_detail/productDetail.js"></script>
   </body>
 
 </html>
