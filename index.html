@@ -3,19 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="프리미엄 온라인 쇼핑몰 - 전자기기, 패션, 뷰티, 홈리빙 등 다양한 상품을 만나보세요"
-    />
-    <meta
-      name="keywords"
-      content="온라인쇼핑, 전자기기, 패션, 뷰티, 홈리빙, 할인, 무료배송"
-    />
-    <meta name="author" content="OpenMarket" />
-
-    <title>Hodu Market</title>
+    <title>Document</title>
+    <!-- css 아직 적용 안되어있습니다. -->
+    <link rel="stylesheet" href="/css/main.css" />
+    <style></style>
   </head>
   <body>
-    <h1>인덱스페이지입니다.</h1>
+    <header id="header"></header>
+    <main>
+      <!-- 캐러셀 섹션입니다. -->
+      <section class="carousel-container">
+        <button type="button" class="carousel-container_button1">
+          <img src="/assets/icons/icon-swiper-1.svg" alt="이전" />
+        </button>
+        <ul class="carousel-slide"></ul>
+        <button type="button" class="carousel-container_button2">
+          <img src="/assets/icons/icon-swiper-2.svg" alt="다음" />
+        </button>
+        <div class="carousel-container_indicator"></div>
+      </section>
+      <!-- 상품 목록 섹션입니다. -->
+      <section class="product-container">
+        <ul class="product-container__list"></ul>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+    <script type="module" src="/js/pages/main/main.js"></script>
   </body>
 </html>
