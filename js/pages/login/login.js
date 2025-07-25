@@ -80,13 +80,20 @@ async function login() {
     }
     const data = await response.json();
     if (data.access && data.refresh) {
-      saveTokens(data.access, data.refresh);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      window.history.back();
+      if (data.user.user_type != $userType.value) {
+        const userType =
+          data.user.user_type == "BUYER" ? "구매회원" : "판매회원";
+        alert(`${userType} 로그인을 이용해 주세요.`);
+      } else {
+        saveTokens(data.access, data.refresh);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.history.back();
+      }
     } else if (data.error) {
       alert(data.error);
     }
   } catch (error) {
+    console.log(error);
     $error.style.display = "block";
     $submitButton.style.marginTop = "0px";
     $error.textContent = "아이디 또는 비밀번호가 올바르지 않습니다.";
