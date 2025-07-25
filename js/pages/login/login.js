@@ -93,7 +93,6 @@ async function login() {
       alert(data.error);
     }
   } catch (error) {
-    console.log(error);
     $error.style.display = "block";
     $submitButton.style.marginTop = "0px";
     $error.textContent = "아이디 또는 비밀번호가 올바르지 않습니다.";
