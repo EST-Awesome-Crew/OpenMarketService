@@ -1,24 +1,15 @@
-//메인 페이지 js파일입니다.
-import { productDetail } from "./components/productDetail.js";
-import { menuTab } from "./components/menuTab.js";
+export function menuTab() {
+  const tabList = document.querySelector(".product-tab__list");
 
-// 헤더와 푸터 로드
-async function loadComponent(elementId, filePath) {
-  try {
-    const response = await fetch(filePath);
-    const html = await response.text();
-    document.getElementById(elementId).innerHTML = html;
-  } catch (error) {
-    console.error(`Failed to load ${filePath}:`, error);
+  function renderTabMenu() {
+    tabList.innerHTML = `
+    <li class="product-tab__item">
+      <button class="product-tab__button product-tab__button--active" aria-current="true">
+        리뷰
+        <span class="product-tab__underline product-tab__underline--active" aria-hidden="true"></span>
+      </button>
+    </li>
+  `;
   }
+  return renderTabMenu();
 }
-
-// 페이지 로드 시 헤더와 푸터 로드
-document.addEventListener("DOMContentLoaded", async function () {
-  loadComponent("header", "./components/header.html");
-  loadComponent("footer", "./components/footer.html");
-
-  productDetail();
-
-  menuTab();
-});

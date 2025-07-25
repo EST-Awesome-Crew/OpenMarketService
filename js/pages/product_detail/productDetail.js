@@ -1,5 +1,5 @@
 //메인 페이지 js파일입니다.
-import { productDetail } from "./components/productDetail.js";
+import { productDetail } from "./components/productDetailContainer.js";
 import { menuTab } from "./components/menuTab.js";
 
 // 헤더와 푸터 로드
@@ -11,14 +11,17 @@ async function loadComponent(elementId, filePath) {
   } catch (error) {
     console.error(`Failed to load ${filePath}:`, error);
   }
+  //헤더가 그려지는 부분에서 import 진행시 돔요소 읽어 옴.
+  if (elementId == "header") {
+    const { initHeader } = await import("../../components/header.js");
+    initHeader();
+  }
 }
 
 // 페이지 로드 시 헤더와 푸터 로드
 document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("header", "./components/header.html");
   loadComponent("footer", "./components/footer.html");
-
-  productDetail();
-
+  productDetail(1);
   menuTab();
 });
