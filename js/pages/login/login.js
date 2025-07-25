@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const token = getAccessToken();
   if (token) {
     // 이미 로그인 되어 있다면 메인 페이지로 이동
-    window.location.href = "/pages/main.html";
+    window.location.href = "/";
   }
 });
 // 판매자 , 구매자 버튼 클릭 active 기능
@@ -80,9 +80,15 @@ async function login() {
     }
     const data = await response.json();
     if (data.access && data.refresh) {
-      saveTokens(data.access, data.refresh);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      window.history.back();
+      if (data.user.user_type != $userType.value) {
+        const userType =
+          data.user.user_type == "BUYER" ? "구매회원" : "판매회원";
+        alert(`${userType} 로그인을 이용해 주세요.`);
+      } else {
+        saveTokens(data.access, data.refresh);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.history.back();
+      }
     } else if (data.error) {
       alert(data.error);
     }

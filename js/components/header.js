@@ -23,7 +23,7 @@ export function initHeader() {
     const params = {
       query: encodeURIComponent(input),
     };
-    window.location.href = `/pages/main.html?${params.toString()}`;
+    window.location.href = `/?${params.toString()}`;
   });
 
   //마이페이지 클릭 토글
