@@ -1,15 +1,26 @@
 export function getProducts() {
   const productList = document.querySelector(".product-container__list");
 
+  //url 파라미터에서 검색어 가져오기
+  //쿼리스트링 파싱
+  const urlParams = new URLSearchParams(window.location.search);
+  //검색 키 가져옴 (header.js와 동일하게 "query"로 변경)
+  const searchInput = urlParams.get("query");
+
   /**
    * api로부터 products 정보를 받아오는 함수
    * @returns product data를 반환
    */
   async function fetchProducts() {
     try {
-      const response = await fetch(
-        "https://api.wenivops.co.kr/services/open-market/products/"
-      );
+      let apiUrl = "https://api.wenivops.co.kr/services/open-market/products/";
+
+      // 검색어가 있으면 API URL에 추가
+      if (searchInput && searchInput.trim() !== "") {
+        apiUrl += `?search=${encodeURIComponent(searchInput)}`;
+      }
+
+      const response = await fetch(apiUrl);
 
       if (!response.ok) {
         throw new Error(`api통신에 실패하였습니다. ${response.status}`);
@@ -53,7 +64,12 @@ export function getProducts() {
     if (products.length > 0) {
       renderProducts(products);
     } else {
-      productList.innerHTML = "<li>상품을 불러올 수 없습니다.</li>";
+      // 검색어 유무에 따른 메세지
+      if (searchInput && searchInput.trim() !== "") {
+        productList.innerHTML = `<li>"${searchInput}"에 대한 검색결과가 없습니다.</li>`;
+      } else {
+        productList.innerHTML = "<li>상품을 불러올 수 없습니다.</li>";
+      }
     }
   }
 
