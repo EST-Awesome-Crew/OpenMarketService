@@ -309,7 +309,7 @@
 }
 .cartOrder__btn-wrap {
   width: 100%;
-  text-align: center;
+  justify-items: center;
 }
 .cart-item__quantity-input::-webkit-inner-spin-button,
 .cart-item__quantity-input::-webkit-outer-spin-button {
@@ -338,33 +338,35 @@ dialog.modal {
   width: 360px;
   height: 200px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   background: #fff;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   top: calc(50% - 100px);
   left: calc(50% - 180px);
 
   &::backdrop {
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
   }
 
   .modal__close {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 18px;
+    right: 18px;
     border: none;
-    background: transparent;
-    font-size: 1.25rem;
-    cursor: pointer;
   }
 
   .modal__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 26px;
     text-align: center;
+    gap: 26px;
+    .modal__message {
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+    }
   }
 
   .modal__quantity-control {
@@ -382,11 +384,11 @@ dialog.modal {
         background: #f5f5f5;
       }
       &:nth-child(1) {
-        border: 1px solid #ccc;
+        border: 1px solid #c4c4c4;
         border-radius: 5px 0 0 5px;
       }
       &:nth-child(3) {
-        border: 1px solid #ccc;
+        border: 1px solid #c4c4c4;
         border-radius: 0 5px 5px 0;
       }
     }
@@ -396,17 +398,13 @@ dialog.modal {
       height: 50px;
       text-align: center;
       border: 0;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #c4c4c4;
+      border-bottom: 1px solid #c4c4c4;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
     }
   }
-
-  .modal__message {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
   .modal__footer {
     display: flex;
     gap: 10px;
@@ -418,11 +416,11 @@ dialog.modal {
       height: 40px;
       padding: 0.5rem 0;
       border-radius: 4px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-      cursor: pointer;
-      background: #fff;
-      transition: background 0.2s ease;
+      border: 1px solid #c4c4c4;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
 
       &--cancel {
         &:hover {
@@ -433,7 +431,7 @@ dialog.modal {
       &--confirm {
         background: #21bf48;
         border: none;
-        color: #fff;
+        color: #ffffff;
 
         &:hover {
           background: darken(#21bf48, 5%);

@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("footer", "./components/footer.html");
   const cartList = document.querySelector(".cart__list");
   const cartSummary = document.querySelector(".cartOrder-summary");
-  const cartAllOrderBtn = document.querySelector(".cartOrder__btn-wrap");
+  const cartAllOrderBtn = document.querySelector(".cartOrder-summary__submit");
   const cartListNoneInnerHTML = `
       <div class="cart-empty" aria-labelledby="cart-empty-title">
         <header class="cart-empty__header">
@@ -84,9 +84,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             <button type="button" class="cart-item__delete"><img src="../../assets/icons/icon-delete.svg" alt="장바구니 삭제"></button>
           </article>
         </form>`;
-
-  //cartList.insertAdjacentHTML("beforeend", cartListInnerHTML);
-  cartList.insertAdjacentHTML("beforeend", cartListNoneInnerHTML);
+  cartSummary.style.display = "block";
+  cartAllOrderBtn.style.display = "block";
+  cartList.insertAdjacentHTML("beforeend", cartListInnerHTML);
+  cartList.insertAdjacentHTML("beforeend", cartListInnerHTML);
+  // cartList.insertAdjacentHTML("beforeend", cartListNoneInnerHTML);
   const summaryValue = document.querySelectorAll(".cartOrder-summary__value");
   summaryValue.forEach(el => {
     const num = parseInt(el.textContent.replace(/[^0-9]/g, ""), 10);
@@ -95,6 +97,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // const modal = document.getElementById("modal-login");
-  // modal.showModal();
+  const modal = document.getElementById("modal-login");
+  modal.showModal();
 });
