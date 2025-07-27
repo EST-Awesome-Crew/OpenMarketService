@@ -1,0 +1,161 @@
+// ===========================================
+// CHECKOUT PAGE
+// ===========================================
+.checkout {
+  max-width: 1280px;
+  margin: 0 auto;
+  &__title {
+    margin-top: 54px;
+    margin-bottom: 52px;
+    text-align: center;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 36px;
+    line-height: 44px;
+  }
+  &__header {
+    display: grid;
+    grid-template-columns: 50% 1fr 1fr 1fr;
+    height: 60px;
+    text-align: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    &-info,
+    &-discount,
+    &-delFee,
+    &-price {
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 100%;
+    }
+  }
+  &__list {
+    margin-bottom: 156px;
+    &-item {
+      display: grid;
+      grid-template-columns: 50% 1fr 1fr 1fr;
+      height: 130px;
+      margin-top: 16px;
+      padding: 8px;
+      border-bottom: 1px solid #c4c4c4;
+    }
+  }
+  &-item {
+    &__image {
+      width: 104px;
+      height: 104px;
+      border: 1px solid black;
+      border-radius: 10px;
+    }
+    &__details-wrap {
+      margin-left: 36px;
+      padding-top: 12px;
+    }
+    &__details {
+      display: flex;
+    }
+    &__seller {
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: #767676;
+    }
+    &__title {
+      margin-top: 6px;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+    }
+    &__info-row {
+      margin-top: 10px;
+      display: flex;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: #767676;
+    }
+    &__discount {
+      text-align: center;
+      align-self: center;
+      color: #767676;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 100%;
+    }
+    &__delFee {
+      text-align: center;
+      align-self: center;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #767676;
+    }
+    &__price {
+      text-align: center;
+      align-self: center;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 700;
+      font-style: Bold;
+      font-size: 18px;
+      line-height: 100%;
+    }
+  }
+  &-list__All-price {
+    display: flex;
+    float: right;
+    margin-top: 30px;
+    dt {
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #000000;
+      margin-right: 10px;
+    }
+    dd {
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 100%;
+      color: #eb5757;
+    }
+    dd::after {
+      content: " 원";
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 100%;
+      color: #eb5757;
+    }
+  }
+
+  &-address__title {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    padding: 18px;
+    border-bottom: 2px solid #c4c4c4;
+    margin-bottom: 40px;
+  }
+  &-order__section legend {
+    width: 100%;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #c4c4c4;
+  }
+  .checkout-order__row {
+    border-bottom: 1px solid #c4c4c4;
+  }
+}

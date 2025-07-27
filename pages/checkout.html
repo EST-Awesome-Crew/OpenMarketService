@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문/결제 : HODU</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="주문/결제 - HODU" />
+    <meta
+      property="og:description"
+      content="주문 상품의 결제 및 배송 정보를 확인하고 결제를 완료할 수 있는 페이지입니다."
+    />
+    <meta property="og:url" content="/pages/checkout.html" />
+    <link rel="icon" href="../assets/icons/favicon.ico" />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <div id="header"></div>
+    <main class="checkout">
+      <h2 class="checkout__title">주문/결제 하기</h2>
+      <header class="checkout__header">
+        <span class="checkout__header-info">상품정보</span>
+        <span class="checkout__header-discount">할인</span>
+        <span class="checkout__header-delFee">배송비</span>
+        <span class="checkout__header-price">주문금액</span>
+      </header>
+      <section class="checkout__list">
+        <article class="checkout__list-item">
+          <div class="checkout-item__details">
+            <img
+              src="상품이미지.jpg"
+              alt="상품 이미지"
+              class="checkout-item__image"
+            />
+            <div class="checkout-item__details-wrap">
+              <span class="checkout-item__seller">백엔드글로벌</span>
+              <h3 class="checkout-item__title">팀러닝 개발자 무료 담요</h3>
+              <dl class="checkout-item__info">
+                <div class="checkout-item__info-row">
+                  <dt>수량</dt>
+                  <dd>1개</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <p class="checkout-item__discount">-</p>
+          <div class="checkout-item__delFee">
+            <dd>무료배송</dd>
+          </div>
+          <p class="checkout-item__price"><strong>17,500원</strong></p>
+        </article>
+        <article class="checkout__list-item">
+          <div class="checkout-item__details">
+            <img
+              src="상품이미지.jpg"
+              alt="상품 이미지"
+              class="checkout-item__image"
+            />
+            <div class="checkout-item__details-wrap">
+              <span class="checkout-item__seller">백엔드글로벌</span>
+              <h3 class="checkout-item__title">팀러닝 개발자 무료 담요</h3>
+              <dl class="checkout-item__info">
+                <div class="checkout-item__info-row">
+                  <dt>수량</dt>
+                  <dd>1개</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <p class="checkout-item__discount">-</p>
+          <div class="checkout-item__delFee">
+            <dd>무료배송</dd>
+          </div>
+          <p class="checkout-item__price"><strong>17,500원</strong></p>
+        </article>
+        <div class="checkout-list__All-price">
+          <dt>총 주문금액</dt>
+          <dd>46, 500</dd>
+        </div>
+      </section>
+      <section>
+        <h3 class="checkout-address__title">배송정보</h3>
+        <form class="checkout-order">
+          <!-- 주문자 정보 -->
+          <fieldset class="checkout-order__section">
+            <legend>주문자 정보</legend>
+            <div class="checkout-order__row">
+              <label for="order-name">이름</label>
+              <input type="text" id="order-name" name="order-name" required />
+            </div>
+            <div class="checkout-order__row">
+              <span class="checkout-order__label">휴대폰</span>
+              <input
+                type="tel"
+                id="order-phone1"
+                name="order-phone1"
+                size="3"
+                required
+              />
+              -
+              <input
+                type="tel"
+                id="order-phone2"
+                name="order-phone2"
+                size="4"
+                required
+              />
+              -
+              <input
+                type="tel"
+                id="order-phone3"
+                name="order-phone3"
+                size="4"
+                required
+              />
+            </div>
+            <div class="checkout-order__row">
+              <label for="order-email">이메일</label>
+              <input
+                type="email"
+                id="order-email"
+                name="order-email"
+                required
+              />
+            </div>
+          </fieldset>
+
+          <!-- 배송지 정보 -->
+          <fieldset class="checkout-order__section">
+            <legend>배송지 정보</legend>
+            <div class="checkout-order__row">
+              <label for="receiver-name">수령인</label>
+              <input
+                type="text"
+                id="receiver-name"
+                name="receiver-name"
+                required
+              />
+            </div>
+            <div class="checkout-order__row">
+              <span class="checkout-order__label">휴대폰</span>
+              <input
+                type="tel"
+                id="receiver-phone1"
+                name="receiver-phone1"
+                size="3"
+                required
+              />
+              -
+              <input
+                type="tel"
+                id="receiver-phone2"
+                name="receiver-phone2"
+                size="4"
+                required
+              />
+              -
+              <input
+                type="tel"
+                id="receiver-phone3"
+                name="receiver-phone3"
+                size="4"
+                required
+              />
+            </div>
+            <div class="checkout-order__row checkout-order__address">
+              <label for="postcode">우편번호</label>
+              <input
+                type="text"
+                id="postcode"
+                name="postcode"
+                placeholder="우편번호"
+                readonly
+              />
+              <button type="button" class="checkout-order__postcode-btn">
+                우편번호 조회
+              </button>
+            </div>
+            <div class="checkout-order__row">
+              <label for="address">기본 주소</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="기본 주소"
+              />
+            </div>
+            <div class="checkout-order__row">
+              <label for="address-detail">상세 주소</label>
+              <input
+                type="text"
+                id="address-detail"
+                name="address-detail"
+                placeholder="상세 주소"
+              />
+            </div>
+            <div class="checkout-order__row">
+              <label for="delivery-message">배송 메시지</label>
+              <input
+                type="text"
+                id="delivery-message"
+                name="delivery-message"
+              />
+            </div>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+    <script src="../js/pages/checkout/checkout.js"></script>
+    <div id="footer"></div>
+  </body>
+</html>
