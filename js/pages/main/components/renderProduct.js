@@ -42,7 +42,9 @@ export function getProducts() {
       .map(
         product => `
     <li class="product-item">
-      <a href="#" class="product-item__link">
+      <a href="/pages/product-detail.html?id=${
+        product.id
+      }" class="product-item__link">
         <img src="${product.image}" alt="${product.name}">
         <div class="product-item__text-container">
           <p class="product-item__seller">${product.seller.store_name}</p>
