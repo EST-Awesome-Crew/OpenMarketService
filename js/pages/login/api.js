@@ -3,7 +3,7 @@
 import { getRefreshToken, saveAccessToken } from "./auth.js";
 
 /** Access Token 재발급 요청 */
-async function refreshAccessToken() {
+export async function refreshAccessToken() {
   const refresh = getRefreshToken();
   if (!refresh) return false;
 
