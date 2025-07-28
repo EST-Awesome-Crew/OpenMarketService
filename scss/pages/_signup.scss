@@ -103,7 +103,6 @@ body {
   height: 28px;
   background-size: contain;
 
-  // 기본 상태 (회색 아이콘)
   background-image: url("../assets/icons/icon-check-off.svg");
 
   &--success {
@@ -196,13 +195,12 @@ body {
   }
 }
 
-// 판매자 관련 필드들 기본 숨김 처리
 .signup__seller-number-container {
-  display: none !important; // 강제로 숨김
+  display: none !important;
   margin-bottom: 12px;
   gap: 12px;
-  flex-direction: row; // 가로 배치로 변경
-  align-items: flex-end; // 하단 정렬
+  flex-direction: row;
+  align-items: flex-end;
 
   .signup__seller-number-container-input {
     display: flex;
@@ -241,8 +239,8 @@ body {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    height: 56px; // input과 같은 높이로 맞춤
-    flex-shrink: 0; // 크기 고정
+    height: 56px;
+    flex-shrink: 0;
 
     &:hover {
       background-color: #21bf48;
@@ -256,7 +254,7 @@ body {
 }
 
 .signup__store-name__container {
-  display: none !important; // 강제로 숨김
+  display: none !important;
   margin-bottom: 12px;
   gap: 10px;
   flex-direction: column;
@@ -284,7 +282,6 @@ body {
   }
 }
 
-// 판매자 선택 시에만 보이게 하는 클래스
 .signup--seller .signup__seller-number-container,
 .signup--seller .signup__store-name__container {
   display: flex !important;
