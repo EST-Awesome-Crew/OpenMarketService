@@ -18,10 +18,23 @@ async function loadComponent(elementId, filePath) {
   }
 }
 
+function getProductIdFromUrlParams() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("id");
+
+  if (productId) {
+    return productId;
+  } else {
+    window.location.href = "/error.html";
+    return null;
+  }
+}
+console.log(getProductIdFromUrlParams());
+
 // 페이지 로드 시 헤더와 푸터 로드
 document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("header", "./components/header.html");
   loadComponent("footer", "./components/footer.html");
-  productDetail(1);
+  productDetail(getProductIdFromUrlParams());
   menuTab();
 });

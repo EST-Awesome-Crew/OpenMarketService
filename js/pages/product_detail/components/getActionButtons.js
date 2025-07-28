@@ -1,7 +1,6 @@
 import { showLoginModal } from "./showLoginModal.js";
-import { getAccessToken } from "../../login/auth.js";
+import { getAccessToken, getRefreshToken } from "../../login/auth.js";
 
-// 💡 변경: stock 인자를 추가했습니다. 이 인자가 없으면 재고 검사를 할 수 없습니다.
 export function getActionButtons(productId, stock) {
   function checkAuthAndUserType() {
     const accessToken = localStorage.getItem("accessToken");
@@ -43,6 +42,7 @@ export function getActionButtons(productId, stock) {
     const currentQuantity = inputQuantityElement
       ? Number(inputQuantityElement.value)
       : 1;
+
     const jwt = getAccessToken();
 
     if (isNaN(currentQuantity) || currentQuantity < 1) {
@@ -84,8 +84,16 @@ export function getActionButtons(productId, stock) {
 
       const result = await response.json();
       console.log("장바구니 추가 성공:", result);
-      alert("상품이 장바구니에 추가되었습니다!");
-      // showCartModal();
+
+      const confirmMoveToCart = confirm(
+        "상품이 장바구니에 추가되었습니다!\n장바구니 페이지로 이동하시겠습니까?"
+      );
+
+      if (confirmMoveToCart) {
+        window.location.href = "/pages/cart.html";
+      } else {
+        console.log("장바구니 이동을 취소했습니다.");
+      }
     } catch (error) {
       console.error("장바구니 추가 중 오류:", error);
       alert(`장바구니 추가 중 오류가 발생했습니다: ${error.message}`);
@@ -114,14 +122,13 @@ export function getActionButtons(productId, stock) {
       alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
       return;
     }
-    // 💡 추가: 수량 유효성 검사 로직 끝
 
     const params = new URLSearchParams();
     params.append("productId", productId);
     params.append("quantity", currentQuantity);
     params.append("order_type", "direct_order");
 
-    const orderPageUrl = `/checkout.html?${params.toString()}`;
+    const orderPageUrl = `/pages/checkout.html?${params.toString()}`;
     window.location.href = orderPageUrl;
   }
 

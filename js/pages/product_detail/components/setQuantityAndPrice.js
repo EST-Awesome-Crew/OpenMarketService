@@ -64,7 +64,7 @@ export function setQuantityAndPrice(data) {
         stockMessage.textContent = `재고가 부족합니다! ${stock}개 이하로 주문해주세요.`;
         stockMessage.style.display = "block";
         stockMessage.style.color = "red";
-        stockMessage.style.marginBottom = "22px";
+        stockMessage.style.marginBottom = "30px";
       }
     }
   });
