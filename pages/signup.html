@@ -39,6 +39,7 @@
       <!-- 회원가입을 위한 정보를 제출하는 섹션 -->
       <section class="user-signup">
         <form class="signup">
+          <input type="hidden" class="userType" value="BUYER" />
           <div class="signup__container-id">
             <label for="user-id">아이디</label>
             <div class="signup__input-group">
@@ -46,8 +47,6 @@
               <button type="button" class="signup__check-id">중복확인</button>
             </div>
             <p class="signup__message"></p>
-            <!-- 또는 실패시 -->
-            <!-- <p class="signup__message signup__message--error">이미 사용중인 아이디입니다.</p> -->
           </div>
 
           <div class="signup__container-password">
@@ -56,6 +55,10 @@
               <input type="password" id="user-password" />
               <span class="signup__icon"></span>
             </div>
+            <p
+              class="signup__message signup__message--error"
+              id="user-password-message"
+            ></p>
           </div>
 
           <div class="signup__container-password">
@@ -64,9 +67,10 @@
               <input type="password" id="check-password" />
               <span class="signup__icon"></span>
             </div>
-            <p class="signup__message signup__message--error">
-              비밀번호가 일치하지 않습니다.
-            </p>
+            <p
+              class="signup__message signup__message--error"
+              id="check-password-message"
+            ></p>
           </div>
 
           <div class="signup__container-name">
@@ -86,23 +90,46 @@
               <input type="tel" id="user-phoneNumber2" maxlength="4" required />
               <input type="tel" id="user-phoneNumber3" maxlength="4" required />
             </div>
+            <p id="user-phonenumber-status"></p>
           </div>
+          <!-- 판매자 정보 -->
+          <div class="signup__seller-number-container">
+            <div class="signup__seller-number-container-input">
+              <label for="signup__seller-number">사업자 등록번호</label>
+              <input
+                type="text"
+                id="signup__seller-number"
+                maxlength="12"
+                placeholder="123-45-67890"
+              />
+            </div>
+            <button
+              type="button"
+              class="signup__seller-number-container-certify"
+            >
+              인증
+            </button>
+          </div>
+          <div class="signup__store-name__container">
+            <label for="signup__store-name">스토어 이름</label>
+            <input type="text" id="store-name" />
+          </div>
+          <!-- 여기까지 판매자 정보 -->
+
+          <div class="signup__agreement">
+            <input type="checkbox" id="agreement" />
+            <label for="agreement">
+              호두샵의 <a href="#">이용약관</a> 및
+              <a href="#">개인정보처리방침</a>에 대한 내용을 확인하였고
+              동의합니다.
+            </label>
+          </div>
+
+          <button type="submit" id="join" disabled>가입하기</button>
         </form>
-
-        <div class="signup__agreement">
-          <input type="checkbox" id="agreement" />
-          <label for="agreement">
-            호두샵의 <a href="#">이용약관</a> 및
-            <a href="#">개인정보처리방침</a>에 대한 내용을 확인하였고
-            동의합니다.
-          </label>
-        </div>
-
-        <button type="submit" id="join" disabled>가입하기</button>
       </section>
     </main>
 
-    <!-- 푸터는 스크립트로 첨부 -->
-    <script></script>
+    <script type="module" src="/js/pages/signup/signup.js"></script>
   </body>
 </html>
