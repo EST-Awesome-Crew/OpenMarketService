@@ -1,6 +1,5 @@
 //메인 페이지 js파일입니다.
 import { productDetail } from "./components/productDetailContainer.js";
-import { menuTab } from "./components/menuTab.js";
 
 // 헤더와 푸터 로드
 async function loadComponent(elementId, filePath) {
@@ -29,12 +28,10 @@ function getProductIdFromUrlParams() {
     return null;
   }
 }
-console.log(getProductIdFromUrlParams());
 
 // 페이지 로드 시 헤더와 푸터 로드
 document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("header", "./components/header.html");
   loadComponent("footer", "./components/footer.html");
   productDetail(getProductIdFromUrlParams());
-  menuTab();
 });

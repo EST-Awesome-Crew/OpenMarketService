@@ -2,6 +2,7 @@ import { getProductSummary } from "./getProductSummary.js";
 import { renderQuantityAndPrice } from "./renderQuantityAndPrice.js";
 import { setQuantityAndPrice } from "./setQuantityAndPrice.js";
 import { getActionButtons } from "./getActionButtons.js";
+import { menuTab } from "./menuTab.js";
 
 export function productDetail(productId) {
   const productDetailContainer = document.querySelector(
@@ -44,6 +45,7 @@ export function productDetail(productId) {
         <button class="product-detail__add-to-cart">장바구니</button>
       </div>
       </div> </div> 
+      ${menuTab(data)}
     `;
 
     setQuantityAndPrice(data);
