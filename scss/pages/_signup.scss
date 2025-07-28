@@ -4,6 +4,7 @@ body {
   font-weight: 400;
   color: #767676;
 }
+
 .user-signup {
   width: 550px;
   margin: 0 auto;
@@ -40,6 +41,9 @@ body {
     border: solid 1px #c4c4c4;
     border-radius: 5px;
     padding: 16px 17px;
+    &.error {
+      border: 1px solid red !important;
+    }
   }
 }
 .signup__check-id {
@@ -49,6 +53,7 @@ body {
   background-color: #2db400;
 }
 .signup__message {
+  display: block;
   font-size: 16px;
   margin-top: 4px;
   &--success {
@@ -74,30 +79,37 @@ body {
     border: solid 1px #c4c4c4;
     border-radius: 5px;
     padding: 16px 17px;
+    &.error {
+      border: 1px solid red;
+    }
   }
   #check-password {
     flex: 1;
     border: solid 1px #c4c4c4;
     border-radius: 5px;
     padding: 16px 17px;
+    &.error {
+      border: 1px solid red;
+    }
   }
 }
 
 .signup__icon {
-  display: none;
+  display: block;
   position: absolute;
   right: 16px;
   bottom: 12px;
   width: 28px;
   height: 28px;
-
   background-size: contain;
+
+  // 기본 상태 (회색 아이콘)
+  background-image: url("../assets/icons/icon-check-off.svg");
+
   &--success {
-    display: block;
     background-image: url("../assets/icons/icon-check-on.svg");
   }
   &--error {
-    display: block;
     background-image: url("../assets/icons/icon-check-off.svg");
   }
 }
@@ -168,7 +180,8 @@ body {
 #join {
   width: 480px;
   height: 60px;
-  margin: auto;
+  margin: 0 auto;
+  margin-bottom: 110px;
   font-size: 18px;
   padding: 12px 0;
   background: #c4c4c4;
@@ -181,4 +194,98 @@ body {
     background: #2db400;
     cursor: pointer;
   }
+}
+
+// 판매자 관련 필드들 기본 숨김 처리
+.signup__seller-number-container {
+  display: none !important; // 강제로 숨김
+  margin-bottom: 12px;
+  gap: 12px;
+  flex-direction: row; // 가로 배치로 변경
+  align-items: flex-end; // 하단 정렬
+
+  .signup__seller-number-container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1; // 남은 공간 차지
+
+    label {
+      font-size: 16px;
+      color: #767676;
+    }
+
+    #signup__seller-number {
+      border: solid 1px #c4c4c4;
+      border-radius: 5px;
+      padding: 16px 17px;
+      font-size: 16px;
+      color: #767676;
+
+      &:focus {
+        outline: none;
+        border-color: #21bf48;
+      }
+
+      &::placeholder {
+        color: #c4c4c4;
+      }
+    }
+  }
+
+  .signup__seller-number-container-certify {
+    padding: 17px 32px;
+    border-radius: 5px;
+    color: white;
+    background-color: #2db400;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    height: 56px; // input과 같은 높이로 맞춤
+    flex-shrink: 0; // 크기 고정
+
+    &:hover {
+      background-color: #21bf48;
+    }
+
+    &:disabled {
+      background-color: #c4c4c4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.signup__store-name__container {
+  display: none !important; // 강제로 숨김
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-direction: column;
+
+  label {
+    font-size: 16px;
+    color: #767676;
+  }
+
+  #store-name {
+    border: solid 1px #c4c4c4;
+    border-radius: 5px;
+    padding: 16px 17px;
+    font-size: 16px;
+    color: #767676;
+
+    &:focus {
+      outline: none;
+      border-color: #21bf48;
+    }
+
+    &::placeholder {
+      color: #c4c4c4;
+    }
+  }
+}
+
+// 판매자 선택 시에만 보이게 하는 클래스
+.signup--seller .signup__seller-number-container,
+.signup--seller .signup__store-name__container {
+  display: flex !important;
 }
