@@ -195,8 +195,8 @@ export function buyerSignup() {
   function handleSignupSuccess(data) {
     alert("회원가입이 완료되었습니다!");
 
-    // 로그인 페이지로 이동
-    window.location.href = "/pages/login.html";
+    // index.html로 이동
+    window.location.href = "/index.html";
   }
 
   /**
