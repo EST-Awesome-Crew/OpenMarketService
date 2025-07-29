@@ -13,8 +13,7 @@ async function loadComponent(elementId, filePath) {
     initHeader();
   }
   const $cart = document.querySelector(".header__menu-cart");
-  $cart.parentElement.querySelector("img").src =
-    "../../assets/icons/icon-shopping-cart-2.svg";
+  $cart.parentElement.querySelector("img").src = "../../assets/icons/icon-shopping-cart-2.svg";
   $cart.style.color = "#21bf48";
 }
 
@@ -28,15 +27,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.querySelector(".cart").style.display = "none";
     const modal = document.getElementById("modal-login");
     modal.showModal();
-    const $loginModal_cancel = document.querySelector(
-      ".modal--login .modal__btn--cancel"
-    );
-    const $loginModal_close = document.querySelector(
-      ".modal--login .modal__close"
-    );
-    const $loginModal_confirm = document.querySelector(
-      ".modal--login .modal__btn--confirm"
-    );
+    const $loginModal_cancel = document.querySelector(".modal--login .modal__btn--cancel");
+    const $loginModal_close = document.querySelector(".modal--login .modal__close");
+    const $loginModal_confirm = document.querySelector(".modal--login .modal__btn--confirm");
     $loginModal_confirm.addEventListener("click", e => {
       e.preventDefault();
       window.location.href = "/pages/login.html"; // 홈으로 이동
@@ -76,16 +69,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   //장바구니 가져오기
   const jwt = getAccessToken();
   try {
-    const response = await fetch(
-      "https://api.wenivops.co.kr/services/open-market/cart/",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch("https://api.wenivops.co.kr/services/open-market/cart/", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
+      },
+    });
     if (!response.ok) {
       throw new Error("오류가 발생했습니다.");
     }
@@ -120,15 +110,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     data.map(x => {
       allPrdPrice += Number(x.product.price) * Number(x.quantity);
       allShipping += x.product.shipping_fee;
-      const id = x.id;
+      const id = x.product.id;
       const imgUlr = x.product.image;
       const prdName = x.product.name;
       const prdSeller = x.product.seller.name;
       const prdPrice = x.product.price;
-      const shipping_method =
-        x.product.shipping_method == "PARCEL"
-          ? "택배,소포,등기"
-          : "직접배송(화물배달)";
+      const shipping_method = x.product.shipping_method == "PARCEL" ? "택배,소포,등기" : "직접배송(화물배달)";
       const shipping_fee = x.product.shipping_fee;
       const cartNum = x.quantity;
       const cartListInnerHTML = `
@@ -164,9 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               <button class="cart-item__quantity-btn plus"><img src="../../assets/icons/icon-plus-line.svg" alt="" /></button>
             </div>
             <div class="cart-item__price-wrap">
-              <p class="cart-item__price">${(
-                prdPrice * cartNum
-              ).toLocaleString()}원</p>
+              <p class="cart-item__price">${(prdPrice * cartNum).toLocaleString()}원</p>
               <button class="cart-item__order-btn">주문하기</button>
             </div>
             <button type="button" class="cart-item__delete"><img src="../../assets/icons/icon-delete.svg" alt="장바구니 삭제"></button>
@@ -178,9 +163,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     const cartSummary = document.querySelector(".cartOrder-summary");
-    const cartAllOrderBtn = document.querySelector(
-      ".cartOrder-summary__submit"
-    );
+    const cartAllOrderBtn = document.querySelector(".cartOrder-summary__submit");
 
     const summaryValue = document.querySelectorAll(".cartOrder-summary__value");
     summaryValue.forEach(el => {
@@ -197,9 +180,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   $allCheckBox.addEventListener("click", e => {
     const $checkBox = document.querySelectorAll(".cart-item__checkbox-input");
     if ($allCheckBox.checked) {
-      const summaryValue = document.querySelectorAll(
-        ".cartOrder-summary__value"
-      );
+      const summaryValue = document.querySelectorAll(".cartOrder-summary__value");
       summaryValue.forEach(el => {
         const num = parseInt(el.textContent.replace(/[^0-9]/g, ""), 10);
         if (!isNaN(num)) {
@@ -231,12 +212,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   });
   // 수량 모달 close
-  const $quantityModal_cancel = document.querySelector(
-    ".modal--quantity .modal__btn--cancel"
-  );
-  const $quantityModal_close = document.querySelector(
-    ".modal--quantity .modal__close"
-  );
+  const $quantityModal_cancel = document.querySelector(".modal--quantity .modal__btn--cancel");
+  const $quantityModal_close = document.querySelector(".modal--quantity .modal__close");
   $quantityModal_close.addEventListener("click", e => {
     e.preventDefault();
     const $modal = document.querySelector(".modal--quantity");
@@ -249,9 +226,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
   // 수량 숫자 수정
   const $quantityModal_plus = document.querySelector(".modal--quantity .plus");
-  const $quantityModal_minus = document.querySelector(
-    ".modal--quantity .minus"
-  );
+  const $quantityModal_minus = document.querySelector(".modal--quantity .minus");
   $quantityModal_plus.addEventListener("click", e => {
     e.preventDefault();
     const $input = document.querySelector(".modal__quantity-input");
@@ -265,17 +240,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
   // 수량 숫자 수정 API
-  const $quantityModal_confirm = document.querySelector(
-    ".modal--quantity .modal__btn--confirm"
-  );
+  const $quantityModal_confirm = document.querySelector(".modal--quantity .modal__btn--confirm");
   $quantityModal_confirm.addEventListener("click", async e => {
     e.preventDefault();
     const $input = document.querySelector(".modal__quantity-input");
-    if (
-      $input.value.trim() == "" ||
-      !/^[0-9]+$/.test($input.value.trim()) ||
-      $input.value <= 0
-    ) {
+    if ($input.value.trim() == "" || !/^[0-9]+$/.test($input.value.trim()) || $input.value <= 0) {
       alert("값을 확인해주세요");
       return;
     }
@@ -289,17 +258,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
   async function fetchCart(jwt, num) {
     try {
-      const response = await fetch(
-        `https://api.wenivops.co.kr/services/open-market/cart/${modalPrdId}/`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ quantity: num }),
-        }
-      );
+      const response = await fetch(`https://api.wenivops.co.kr/services/open-market/cart/${modalPrdId}/`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ quantity: num }),
+      });
 
       // 응답 상태 체크
       if (response.status === 401) {
@@ -320,20 +286,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   $quantityDel.forEach(el => {
     el.addEventListener("click", async e => {
       e.preventDefault();
-      const modalPrdId = e.target
-        .closest(".cart-item")
-        .querySelector(".prdId").value;
+      const modalPrdId = e.target.closest(".cart-item").querySelector(".prdId").value;
       try {
-        const response = await fetch(
-          `https://api.wenivops.co.kr/services/open-market/cart/${modalPrdId}/`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(`https://api.wenivops.co.kr/services/open-market/cart/${modalPrdId}/`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+        });
         // 응답 상태 체크
         if (response.status === 401) {
           throw new Error("인증이 만료되었습니다. 다시 로그인해주세요.");
@@ -387,49 +348,29 @@ document.addEventListener("DOMContentLoaded", async function () {
   function updateSummary() {
     let totalPrice = 0;
     let totalShipping = 0;
-    document
-      .querySelectorAll(".cart-item__checkbox-input:checked")
-      .forEach(cb => {
-        const cartItem = cb.closest(".cart-item");
+    document.querySelectorAll(".cart-item__checkbox-input:checked").forEach(cb => {
+      const cartItem = cb.closest(".cart-item");
 
-        const price = Number(
-          cartItem
-            .querySelector(".cart-item__price")
-            .textContent.replace(/[^0-9]/g, "")
-        );
-        const quantity = Number(
-          cartItem
-            .querySelector(".cart-item__quantity-input")
-            .value.replace(/[^0-9]/g, "")
-        );
-        const shipping = Number(
-          cartItem
-            .querySelector(".cart-item__info-shipping")
-            .textContent.replace(/[^0-9]/g, "")
-        );
-        totalPrice += price;
-        totalShipping += shipping;
-      });
+      const price = Number(cartItem.querySelector(".cart-item__price").textContent.replace(/[^0-9]/g, ""));
+      const quantity = Number(cartItem.querySelector(".cart-item__quantity-input").value.replace(/[^0-9]/g, ""));
+      const shipping = Number(cartItem.querySelector(".cart-item__info-shipping").textContent.replace(/[^0-9]/g, ""));
+      totalPrice += price;
+      totalShipping += shipping;
+    });
     const cartSummaryList = document.querySelector(".cartOrder-summary__list");
-    cartSummaryList.firstElementChild.querySelector(
-      ".cartOrder-summary__value"
-    ).textContent = totalPrice.toLocaleString();
-    cartSummaryList.children[2].querySelector(
-      ".cartOrder-summary__value"
-    ).textContent = totalShipping.toLocaleString();
-    cartSummaryList.children[3].querySelector(
-      ".cartOrder-summary__value"
-    ).textContent = (totalPrice + totalShipping).toLocaleString();
+    cartSummaryList.firstElementChild.querySelector(".cartOrder-summary__value").textContent =
+      totalPrice.toLocaleString();
+    cartSummaryList.children[2].querySelector(".cartOrder-summary__value").textContent = totalShipping.toLocaleString();
+    cartSummaryList.children[3].querySelector(".cartOrder-summary__value").textContent = (
+      totalPrice + totalShipping
+    ).toLocaleString();
   }
   //체크된 제품 주문
-  const query = encodeURIComponent(JSON.stringify(selectedItems));
 
-  document
-    .querySelector(".cartOrder-summary__submit")
-    .addEventListener("click", e => {
-      e.preventDefault();
-
-      console.log(decodeURIComponent(query));
-      window.location.href = `/pages/checkout.html?items=${query}&order_type=${order_type}`;
-    });
+  document.querySelector(".cartOrder-summary__submit").addEventListener("click", e => {
+    e.preventDefault();
+    const query = encodeURIComponent(JSON.stringify(selectedItems));
+    console.log(decodeURIComponent(query));
+    window.location.href = `/pages/checkout.html?items=${query}&order_type=${order_type}`;
+  });
 });

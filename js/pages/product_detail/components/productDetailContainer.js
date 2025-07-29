@@ -45,10 +45,10 @@ export function productDetail(productId) {
         <button class="product-detail__add-to-cart">장바구니</button>
       </div>
       </div> </div> 
-      ${menuTab(data)}
     `;
 
     setQuantityAndPrice(data);
+    menuTab(data);
 
     const actionButtons = getActionButtons(productId, data?.stock);
     actionButtons.setupEventListeners(productDetailContainer);
