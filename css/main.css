@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .sr-only {
   position: absolute;
   overflow: hidden;
@@ -256,12 +257,16 @@ strong {
   font-style: bold;
 }
 
+#header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .header {
   display: flex;
   max-width: 1280px;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 20px 20px 0;
   margin: 0 auto;
 }
 .header__wrap {
@@ -414,6 +419,440 @@ strong {
   margin-top: 5px;
 }
 
+.cart {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 54px 0px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+}
+.cart__title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 54px;
+}
+.cart__header {
+  display: grid;
+  grid-template-columns: 110px 1fr 150px 278px;
+  align-items: center;
+  padding-left: 30px;
+  background: #f2f2f2;
+  border-radius: 10px;
+  height: 60px;
+  margin-bottom: 35px;
+}
+.cart__header-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.cart__header-checkbox-label .cart__header__checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cart__header-checkbox-label .cart__header__checkbox-input:checked + .cart__header__checkbox-span::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.cart__header-checkbox-label .cart__header__checkbox-span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #21bf48;
+  border-radius: 50%;
+  position: relative;
+}
+.cart__header-checkbox-label .cart__header__checkbox-span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: #21bf48;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+.cart__header-info, .cart__header-quantity, .cart__header-price {
+  text-align: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  color: #000000;
+}
+.cart__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 80px;
+}
+.cart .cart-item {
+  display: grid;
+  grid-template-columns: 110px 160px 1fr 150px 242px 18px;
+  padding: 20px 18px 20px 30px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.cart .cart-item__checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.cart .cart-item__checkbox-label .cart-item__checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cart .cart-item__checkbox-label .cart-item__checkbox-input:checked + .cart-item__checkbox-span::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.cart .cart-item__checkbox-label .cart-item__checkbox-span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #21bf48;
+  border-radius: 50%;
+  position: relative;
+}
+.cart .cart-item__checkbox-label .cart-item__checkbox-span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: #21bf48;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+.cart .cart-item__image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+.cart .cart-item__info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 36px;
+}
+.cart .cart-item__info-seller {
+  margin-top: 6px;
+  margin-bottom: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #767676;
+}
+.cart .cart-item__info-name {
+  margin-bottom: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+}
+.cart .cart-item__info-price {
+  margin-bottom: 40px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+}
+.cart .cart-item__info-shipping {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #767676;
+}
+.cart .cart-item__quantity {
+  display: flex;
+  width: 150px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.cart .cart-item__quantity-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #c4c4c4;
+  font-size: 20px;
+}
+.cart .cart-item__quantity-btn:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.cart .cart-item__quantity-btn:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.cart .cart-item__quantity-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: 0;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000000;
+}
+.cart .cart-item__price-wrap {
+  padding-left: 36px;
+  text-align: center;
+  vertical-align: middle;
+}
+.cart .cart-item__price {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  color: #eb5757;
+  padding-top: 38px;
+}
+.cart .cart-item__order-btn {
+  margin-top: 36px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #ffffff;
+  width: 130px;
+  height: 40px;
+  background-color: #21bf48;
+  border-radius: 5px;
+}
+.cart .cart-item__delete {
+  align-self: start;
+}
+.cart .cartOrder-summary {
+  display: none;
+  background-color: #f2f2f2;
+  max-width: 1280px;
+  height: 150px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+.cart .cartOrder-summary__item {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.cart .cartOrder-summary__item:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background: url("../../assets/icons/minus-icon_2.svg") no-repeat center/contain;
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+.cart .cartOrder-summary__item:nth-child(2)::after {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background: url("../../assets/icons/plus-icon_2.svg") no-repeat center/contain;
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+.cart .cartOrder-summary__list {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart .cartOrder-summary__term {
+  margin-bottom: 12px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+.cart .cartOrder-summary__value {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+.cart .cartOrder-summary__value::after {
+  content: " 원";
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.cart .cartOrder-summary__value--total {
+  color: red;
+  font-weight: bold;
+}
+.cart .cartOrder-summary__submit {
+  display: none;
+  padding: 19px 66px;
+  background: #21bf48;
+  color: #ffffff;
+  border-radius: 5px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.cartOrder__btn-wrap {
+  width: 100%;
+  justify-items: center;
+}
+
+.cart-item__quantity-input::-webkit-inner-spin-button,
+.cart-item__quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Chrome, Safari, Edge 화살표 제거 */
+  margin: 0;
+}
+
+.cart-empty {
+  text-align: center;
+}
+.cart-empty__header {
+  margin-top: 165px;
+  margin-bottom: 17px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #000000;
+}
+.cart-empty__description {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #767676;
+}
+
+dialog.modal {
+  width: 360px;
+  height: 200px;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  top: calc(50% - 100px);
+  left: calc(50% - 180px);
+}
+dialog.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+dialog.modal .modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+}
+dialog.modal .modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 26px;
+}
+dialog.modal .modal__content .modal__message {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+}
+dialog.modal .modal__quantity-control {
+  display: flex;
+  align-items: center;
+  margin-top: 44px;
+}
+dialog.modal .modal__quantity-control .modal__quantity-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.25rem;
+  background: #fff;
+}
+dialog.modal .modal__quantity-control .modal__quantity-btn:hover {
+  background: #f5f5f5;
+}
+dialog.modal .modal__quantity-control .modal__quantity-btn:nth-child(1) {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px 0 0 5px;
+}
+dialog.modal .modal__quantity-control .modal__quantity-btn:nth-child(3) {
+  border: 1px solid #c4c4c4;
+  border-radius: 0 5px 5px 0;
+}
+dialog.modal .modal__quantity-control .modal__quantity-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: 0;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+dialog.modal .modal__footer {
+  display: flex;
+  gap: 10px;
+  width: 210px;
+}
+dialog.modal .modal__footer .modal__btn {
+  flex: 1;
+  width: 100px;
+  height: 40px;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+  border: 1px solid #c4c4c4;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+dialog.modal .modal__footer .modal__btn--cancel:hover {
+  background: #f5f5f5;
+}
+dialog.modal .modal__footer .modal__btn--confirm {
+  background: #21bf48;
+  border: none;
+  color: #ffffff;
+}
+dialog.modal .modal__footer .modal__btn--confirm:hover {
+  background: rgb(29.2433035714, 169.2566964286, 63.8035714286);
+}
+
+.modal--delete {
+  padding-top: 60px;
+}
+.modal--delete .modal__message {
+  padding-bottom: 14px;
+}
+
+.modal--login {
+  padding-top: 50px;
+}
+.modal--login .modal__message {
+  padding-bottom: 4px;
+}
+
+.modal__quantity-input::-webkit-inner-spin-button,
+.modal__quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Chrome, Safari, Edge 화살표 제거 */
+  margin: 0;
+}
+
 main {
   width: 100%;
 }
@@ -468,8 +907,7 @@ main {
 .carousel-image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
 }
 .carousel-image_indicator {
@@ -537,6 +975,299 @@ main {
 .product-item__price {
   font-size: 24px;
   font-weight: 700;
+}
+
+.section-divider {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #c4c4c4;
+}
+
+.product-detail__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 80px;
+  color: #000;
+}
+.product-detail__image {
+  width: 600px;
+  height: 600px;
+  margin-right: 50px;
+}
+.product-detail__summary {
+  min-width: 630px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.product-detail__category {
+  font-size: 1.125rem;
+  color: #767676;
+  margin-bottom: 1rem;
+}
+.product-detail__name {
+  font-size: 2.25rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.product-detail__price {
+  line-height: 45px;
+}
+.product-detail__price :first-child {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+.product-detail__price :last-child {
+  font-size: 1.125rem;
+}
+.product-detail__delivery-cost {
+  color: #767676;
+  font-size: 1rem;
+  margin: 138px 0 20px;
+}
+.product-detail__quantity {
+  margin: 30px 0;
+  height: 50px;
+  padding: 0;
+  display: flex;
+}
+.product-detail__quantity > * {
+  width: 50px;
+  border: 1px solid black;
+  margin: 0;
+}
+.product-detail__quantity-decrease {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px 0 0 5px;
+  background-color: #ffffff;
+  background-image: url(../assets/icons/icon-minus-line.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-detail__quantity-count {
+  border: 0;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  text-align: center;
+}
+.product-detail__quantity-count::-webkit-outer-spin-button, .product-detail__quantity-count::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.product-detail__quantity-increase {
+  border: 1px solid #c4c4c4;
+  border-radius: 0 5px 5px 0;
+  background-color: #ffffff;
+  background-image: url(../assets/icons/icon-plus-line.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-detail__stock-message {
+  display: none;
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+}
+.product-detail__price-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  margin: 46px 0 30px;
+  align-items: flex-end;
+}
+.product-detail__price-result-meta {
+  display: flex;
+  margin-left: auto;
+}
+.product-detail__quantity-result {
+  color: #767676;
+  font-size: 1.125rem;
+}
+.product-detail__price-label {
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+.product-detail__quantity-count-result {
+  color: #21bf48;
+  font-weight: 700;
+}
+.product-detail__total-price {
+  color: #21bf48;
+  display: inline-block;
+}
+.product-detail__price-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+.product-detail__actions > button {
+  height: 60px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.product-detail__actions > button.deactivate {
+  background-color: #767676;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.product-detail__buy-now {
+  width: 416px;
+  margin-right: 14px;
+  background-color: #21bf48;
+}
+.product-detail__add-to-cart {
+  width: 200px;
+  background-color: #767676;
+}
+
+#login-modal {
+  width: 360px;
+  height: 200px;
+  border: 1px solid #767676;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#login-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+#login-modal p {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+#login-modal .btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+  margin-bottom: 15px;
+}
+#login-modal .btns button {
+  width: 100px;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+#login-modal #close-modal {
+  font-weight: 500;
+  color: #767676;
+  border: 1px solid #c4c4c4;
+  background-color: #f0f0f0;
+}
+#login-modal #close-modal:hover {
+  background-color: #e0e0e0;
+}
+#login-modal #login {
+  background-color: #21bf48;
+  font-weight: 500;
+  color: #ffffff;
+  border: 1px solid #21bf48;
+}
+#login-modal #login:hover {
+  background-color: rgb(25.4866071429, 147.5133928571, 55.6071428571);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  background-image: url("../../assets/icons/icon-delete.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+}
+.modal-close-button:hover {
+  opacity: 0.7;
+}
+
+.product-tab {
+  display: flex;
+  justify-content: center;
+  width: 1280px;
+  height: 60px;
+  margin: 140px auto 0;
+}
+.product-tab__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+}
+.product-tab__item {
+  flex: 0 0 25%;
+  height: 100%;
+  text-align: center;
+  line-height: 54px;
+}
+.product-tab__button {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #767676;
+  position: relative;
+}
+.product-tab__button--active {
+  font-weight: 700;
+  color: #21bf48;
+}
+.product-tab__underline {
+  display: block;
+  height: 6px;
+  background-color: #767676;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.product-tab__underline--active {
+  background-color: #21bf48;
+}
+.product-tab__content {
+  margin: 50px auto;
+  width: 1280px;
+}
+
+.divider {
+  margin: 0 11px;
+  color: #c4c4c4;
+}
+
+.xl-font {
+  font-size: 2.25rem;
 }
 
 .main__error {
@@ -727,11 +1458,12 @@ main {
   background-color: #333333;
 }
 
-body {
+.signup {
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #767676;
+  z-index: 10;
 }
 
 .user-signup {
@@ -743,9 +1475,8 @@ body {
   justify-content: center;
 }
 
-.signup {
+.signup__form-content {
   transform: translateY(-20px);
-  z-index: 10;
   display: flex;
   flex-direction: column;
   padding: 40px 35px 36px;
@@ -773,6 +1504,9 @@ body {
   border-radius: 5px;
   padding: 16px 17px;
 }
+.signup__input-group #user-id.error {
+  border: 1px solid red !important;
+}
 
 .signup__check-id {
   padding: 17px 32px;
@@ -782,6 +1516,7 @@ body {
 }
 
 .signup__message {
+  display: block;
   font-size: 16px;
   margin-top: 4px;
 }
@@ -808,28 +1543,33 @@ body {
   border-radius: 5px;
   padding: 16px 17px;
 }
+.signup__container-password #user-password.error {
+  border: 1px solid red;
+}
 .signup__container-password #check-password {
   flex: 1;
   border: solid 1px #c4c4c4;
   border-radius: 5px;
   padding: 16px 17px;
 }
+.signup__container-password #check-password.error {
+  border: 1px solid red;
+}
 
 .signup__icon {
-  display: none;
+  display: block;
   position: absolute;
   right: 16px;
   bottom: 12px;
   width: 28px;
   height: 28px;
   background-size: contain;
+  background-image: url("../assets/icons/icon-check-off.svg");
 }
 .signup__icon--success {
-  display: block;
   background-image: url("../assets/icons/icon-check-on.svg");
 }
 .signup__icon--error {
-  display: block;
   background-image: url("../assets/icons/icon-check-off.svg");
 }
 
@@ -878,7 +1618,7 @@ body {
 .signup__agreement {
   display: flex;
   gap: 10px;
-  margin: 0 auto;
+  justify-self: center;
   align-items: flex-start;
   margin-bottom: 20px;
   font-size: 14px;
@@ -897,10 +1637,15 @@ body {
   text-decoration: underline;
 }
 
+.join-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 110px;
+}
+
 #join {
   width: 480px;
   height: 60px;
-  margin: auto;
   font-size: 18px;
   padding: 12px 0;
   background: #c4c4c4;
@@ -913,4 +1658,448 @@ body {
 #join:enabled {
   background: #2db400;
   cursor: pointer;
+}
+
+.signup__seller-number-container {
+  display: none !important;
+  margin-bottom: 12px;
+  gap: 12px;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.signup__seller-number-container .signup__seller-number-container-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.signup__seller-number-container .signup__seller-number-container-input label {
+  font-size: 16px;
+  color: #767676;
+}
+.signup__seller-number-container .signup__seller-number-container-input #signup__seller-number {
+  border: solid 1px #c4c4c4;
+  border-radius: 5px;
+  padding: 16px 17px;
+  font-size: 16px;
+  color: #767676;
+}
+.signup__seller-number-container .signup__seller-number-container-input #signup__seller-number:focus {
+  outline: none;
+  border-color: #21bf48;
+}
+.signup__seller-number-container .signup__seller-number-container-input #signup__seller-number::placeholder {
+  color: #c4c4c4;
+}
+.signup__seller-number-container .signup__seller-number-container-certify {
+  padding: 17px 32px;
+  border-radius: 5px;
+  color: white;
+  background-color: #2db400;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  height: 56px;
+  flex-shrink: 0;
+}
+.signup__seller-number-container .signup__seller-number-container-certify:hover {
+  background-color: #21bf48;
+}
+.signup__seller-number-container .signup__seller-number-container-certify:disabled {
+  background-color: #c4c4c4;
+  cursor: not-allowed;
+}
+
+.signup__store-name__container {
+  display: none !important;
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-direction: column;
+}
+.signup__store-name__container label {
+  font-size: 16px;
+  color: #767676;
+}
+.signup__store-name__container #store-name {
+  border: solid 1px #c4c4c4;
+  border-radius: 5px;
+  padding: 16px 17px;
+  font-size: 16px;
+  color: #767676;
+}
+.signup__store-name__container #store-name:focus {
+  outline: none;
+  border-color: #21bf48;
+}
+.signup__store-name__container #store-name::placeholder {
+  color: #c4c4c4;
+}
+
+.signup--seller .signup__seller-number-container,
+.signup--seller .signup__store-name__container {
+  display: flex !important;
+}
+
+.checkout {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.checkout__title {
+  margin-top: 54px;
+  margin-bottom: 52px;
+  text-align: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 36px;
+  line-height: 44px;
+}
+.checkout__header {
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr 1fr;
+  height: 60px;
+  text-align: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+.checkout__header-info, .checkout__header-discount, .checkout__header-delFee, .checkout__header-price {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+}
+.checkout__list {
+  margin-bottom: 156px;
+}
+.checkout__list-item {
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr 1fr;
+  height: 130px;
+  margin-top: 16px;
+  padding: 8px;
+  border-bottom: 1px solid #c4c4c4;
+}
+.checkout-item__image {
+  width: 104px;
+  height: 104px;
+  border-radius: 10px;
+}
+.checkout-item__details-wrap {
+  margin-left: 36px;
+  padding-top: 12px;
+}
+.checkout-item__details {
+  display: flex;
+}
+.checkout-item__seller {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #767676;
+}
+.checkout-item__title {
+  margin-top: 6px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+.checkout-item__info-row {
+  margin-top: 10px;
+  display: flex;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #767676;
+}
+.checkout-item__discount {
+  text-align: center;
+  align-self: center;
+  color: #767676;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+}
+.checkout-item__delFee {
+  text-align: center;
+  align-self: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #767676;
+}
+.checkout-item__price {
+  text-align: center;
+  align-self: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 100%;
+}
+.checkout-list__all-price {
+  display: flex;
+  float: right;
+  margin-top: 30px;
+}
+.checkout-list__all-price dt {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000000;
+  margin-right: 10px;
+}
+.checkout-list__all-price dd {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  color: #eb5757;
+}
+.checkout-address__title {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #c4c4c4;
+  margin-bottom: 40px;
+}
+.checkout-order__section legend {
+  width: 100%;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #c4c4c4;
+}
+.checkout .checkout-order__section {
+  margin-bottom: 40px;
+}
+.checkout .checkout-order__row {
+  height: 56px;
+  border-bottom: 1px solid #c4c4c4;
+  align-content: center;
+}
+.checkout .checkout-order__row legend,
+.checkout .checkout-order__row label,
+.checkout .checkout-order__row span {
+  display: inline-block;
+  width: 160px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  border-bottom: 0;
+}
+.checkout .checkout-order__row input {
+  border: 1px solid #c4c4c4;
+  height: 40px;
+  padding: 10px;
+}
+.checkout .checkout-order__row #order-name,
+.checkout .checkout-order__row #order-email,
+.checkout .checkout-order__row #receiver-name {
+  width: 334px;
+}
+.checkout .checkout-order__row #order-phone1,
+.checkout .checkout-order__row #receiver-phone1 {
+  width: 80px;
+  margin-right: 6px;
+}
+.checkout .checkout-order__row #order-phone2,
+.checkout .checkout-order__row #order-phone3,
+.checkout .checkout-order__row #receiver-phone2,
+.checkout .checkout-order__row #receiver-phone3 {
+  width: 100px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+.checkout .checkout-order__address {
+  height: 152px;
+}
+.checkout .checkout-order__address .checkout-order__address-detail {
+  display: flex;
+  flex-direction: column;
+}
+.checkout .checkout-order__address .checkout-order__address-detail input {
+  margin-left: 164px;
+  margin-top: 8px;
+}
+.checkout #address,
+.checkout #address-detail,
+.checkout #delivery-message {
+  width: 800px;
+}
+.checkout .checkout-order__postcode-btn {
+  width: 154px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #21bf48;
+  margin-left: 10px;
+  color: white;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+}
+.checkout-payment {
+  display: inline-block;
+  width: 800px;
+  vertical-align: top;
+  margin-bottom: 40px;
+}
+.checkout .payment-method {
+  width: 760px;
+}
+.checkout .payment-method legend {
+  width: 100%;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #c4c4c4;
+}
+.checkout .payment-method__list {
+  display: flex;
+  padding: 18px 12px;
+  gap: 20px;
+  border-bottom: 1px solid #c4c4c4;
+}
+.checkout .payment-method__checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  gap: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.checkout .payment-method__checkbox-label .payment-method__checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.checkout .payment-method__checkbox-label .payment-method__checkbox-input:checked + .payment-method__checkbox-span::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.checkout .payment-method__checkbox-label .payment-method__checkbox-span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #21bf48;
+  border-radius: 50%;
+  position: relative;
+}
+.checkout .payment-method__checkbox-label .payment-method__checkbox-span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: #21bf48;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+.checkout-summary {
+  display: inline-block;
+  width: 475px;
+  height: 448px;
+  margin-bottom: 100px;
+}
+.checkout-summary__title {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  margin-bottom: 18px;
+}
+.checkout .payment-summary__wrap {
+  height: 400px;
+}
+.checkout .payment-summary__details {
+  border: 2px solid;
+  border-bottom: 0 solid;
+  border-color: #21bf48;
+  border-radius: 10px 10px 0 0;
+  padding-top: 34px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.checkout .payment-summary__item {
+  display: flex;
+  justify-content: space-between;
+}
+.checkout .payment-summary__item dt {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.checkout .payment-summary__item dt::before {
+  content: "-";
+  margin-right: 10px;
+}
+.checkout .payment-summary__item dd {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+.checkout .payment-summary__item dd .unit {
+  margin-left: 5px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #767676;
+}
+.checkout .payment-summary__total {
+  margin-top: 4px;
+  border-top: 1px solid #c4c4c4;
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
+.checkout .payment-summary__total strong {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #eb5757;
+}
+.checkout .payment-summary__confirm {
+  background-color: #f2f2f2;
+  height: auto;
+  border: 2px solid;
+  border-top: 0 solid;
+  border-color: #21bf48;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  padding: 30px;
+}
+.checkout .payment-summary__confirm label {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+.checkout .payment-summary__confirm button {
+  width: 220px;
+  height: 68px;
+  background-color: #c4c4c4;
+  border-radius: 5px;
+  margin-top: 30px;
+  color: #ffffff;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 4px;
+  cursor: not-allowed;
 }/*# sourceMappingURL=main.css.map */
