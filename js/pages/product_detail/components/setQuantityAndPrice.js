@@ -1,96 +1,125 @@
-import { getProductSummary } from "./getProductSummary.js";
-import { renderQuantityAndPrice } from "./renderQuantityAndPrice.js";
-import { setQuantityAndPrice } from "./setQuantityAndPrice.js";
-import { getActionButtons } from "./getActionButtons.js";
-import { menuTab } from "./menuTab.js";
+// setQuantityAndPrice.js 파일
+export function setQuantityAndPrice(data) {
+  const price = data?.price;
+  const stock = data?.stock;
 
-export function productDetail(productId) {
-  const productDetailContainer = document.querySelector(
-    ".product-detail__container"
+  const decreaseBtn = document.querySelector(
+    ".product-detail__quantity-decrease"
   );
+  const increaseBtn = document.querySelector(
+    ".product-detail__quantity-increase"
+  );
+  const inputQuantity = document.querySelector(
+    ".product-detail__quantity-count"
+  );
+  const quantityResult = document.querySelector(
+    ".product-detail__quantity-count-result"
+  );
+  const priceResult = document.querySelector(".product-detail__price-number");
+  const stockMessage = document.querySelector(".product-detail__stock-message");
 
-  async function fetchProductDetail() {
-    try {
-      const response = await fetch(
-        `https://api.wenivops.co.kr/services/open-market/products/${productId}/`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`api통신에 실패하였습니다. ${response.status}`);
-      }
+  const buyNowBtn = document.querySelector(".product-detail__buy-now");
+  const addToCartBtn = document.querySelector(".product-detail__add-to-cart");
 
-      const data = await response.json();
-      renderProductDetail(data);
-    } catch (error) {
-      console.error("API 호출 실패:", error.message);
+  function displayStockMessage(message) {
+    if (stockMessage) {
+      stockMessage.textContent = message;
+      stockMessage.style.display = message ? "block" : "none";
+      stockMessage.style.color = "red";
+      stockMessage.style.marginBottom = "30px";
     }
   }
 
-  function updateMetaTags(data) {
-    if (!data) return;
+  function setButtonAndInputState(isDisabled) {
+    if (decreaseBtn) decreaseBtn.disabled = isDisabled;
+    if (increaseBtn) increaseBtn.disabled = isDisabled;
+    if (inputQuantity) inputQuantity.disabled = isDisabled;
+    if (buyNowBtn) buyNowBtn.disabled = isDisabled;
+    if (addToCartBtn) addToCartBtn.disabled = isDisabled;
 
-    // Open Graph (OG) Tags
-    setMetaTag("og:title", data.name);
-    setMetaTag("og:description", data.info);
-    setMetaTag("og:image", data.image);
-    setMetaTag("og:url", window.location.href);
-    setMetaTag("og:type", "product");
-
-    // Twitter Card Tags
-    setMetaTag("twitter:card", "summary_large_image");
-    setMetaTag("twitter:title", data.name);
-    setMetaTag("twitter:description", data.info);
-    setMetaTag("twitter:image", data.image);
-
-    // Standard Meta Tags
-    setMetaTag("description", data.info, true);
-    setMetaTag(
-      "keywords",
-      `${data.name}, ${data.seller.store_name}, 상품, 쇼핑`,
-      true
-    );
-  }
-
-  function setMetaTag(property, content, isNameTag = false) {
-    let tag = document.querySelector(
-      `meta[${isNameTag ? "name" : "property"}="${property}"]`
-    );
-    if (!tag) {
-      tag = document.createElement("meta");
-      tag.setAttribute(isNameTag ? "name" : "property", property);
-      document.head.appendChild(tag);
+    if (buyNowBtn) {
+      if (isDisabled) buyNowBtn.classList.add("deactivate");
+      else buyNowBtn.classList.remove("deactivate");
     }
-    tag.setAttribute("content", content);
+    if (addToCartBtn) {
+      if (isDisabled) addToCartBtn.classList.add("deactivate");
+      else addToCartBtn.classList.remove("deactivate");
+    }
   }
 
-  function renderProductDetail(data) {
-    if (!data) {
-      productDetailContainer.innerHTML = `<p>상품 정보를 불러올 수 없습니다.</p>`;
+  function updateUI() {
+    let currentQuantity = Number(inputQuantity.value);
+    let originalQuantity = Number(inputQuantity.dataset.originalValue || 1); // 변경 전 값 저장
+
+    if (stock === 0) {
+      displayStockMessage("재고 소진");
+      setButtonAndInputState(true);
+      inputQuantity.value = 0;
+      quantityResult.textContent = 0;
+      priceResult.textContent = (0).toLocaleString();
       return;
     }
 
-    productDetailContainer.innerHTML = `
-      ${getProductSummary(data)}
-      ${renderQuantityAndPrice(data)}
-      <div class="product-detail__actions">
-        <button class="product-detail__buy-now">바로 구매</button>
-        <button class="product-detail__add-to-cart">장바구니</button>
-      </div>
-      </div> </div> 
-    `;
+    if (isNaN(currentQuantity) || currentQuantity < 1) {
+      if (currentQuantity !== originalQuantity) {
+        // 값이 실제로 변경된 경우에만 alert
+        alert("수량은 1개 이상으로 입력해주세요.");
+      }
+      currentQuantity = 1;
+      inputQuantity.value = 1;
+    } else if (currentQuantity > stock) {
+      if (currentQuantity !== originalQuantity) {
+        // 값이 실제로 변경된 경우에만 alert
+        alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+      }
+      currentQuantity = stock;
+      inputQuantity.value = stock;
+    }
 
-    setQuantityAndPrice(data);
-    menuTab(data);
-    updateMetaTags(data);
+    // 변경된 값을 originalValue에 저장
+    inputQuantity.dataset.originalValue = currentQuantity;
 
-    const actionButtons = getActionButtons(productId, data?.stock);
-    actionButtons.setupEventListeners(productDetailContainer);
+    displayStockMessage("");
+    setButtonAndInputState(false);
+
+    quantityResult.textContent = currentQuantity;
+    priceResult.textContent = (price * currentQuantity).toLocaleString();
   }
 
-  return fetchProductDetail();
+  if (decreaseBtn) {
+    decreaseBtn.addEventListener("click", () => {
+      let currentQuantity = Number(inputQuantity.value);
+      if (currentQuantity > 1) {
+        inputQuantity.value = currentQuantity - 1;
+      } else {
+        alert("수량은 1개 이상으로 입력해주세요.");
+      }
+      updateUI();
+    });
+  }
+
+  if (increaseBtn) {
+    increaseBtn.addEventListener("click", () => {
+      let currentQuantity = Number(inputQuantity.value);
+      if (currentQuantity < stock) {
+        inputQuantity.value = currentQuantity + 1;
+      } else {
+        alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+      }
+      updateUI();
+    });
+  }
+
+  if (inputQuantity) {
+    inputQuantity.addEventListener("change", event => {
+      updateUI();
+    });
+    // 초기 렌더링 시 originalValue 설정
+    inputQuantity.dataset.originalValue = Number(inputQuantity.value || 1);
+  }
+
+  if (!inputQuantity.value) {
+    inputQuantity.value = 1;
+  }
+  updateUI();
 }

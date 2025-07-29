@@ -2,9 +2,9 @@ export function renderQuantityAndPrice(data) {
   return `
     <span class="section-divider" aria-hidden="true"></span>
     <div class="product-detail__quantity">
-      <button class="product-detail__quantity-decrease"></button>
+      <button type="button" class="product-detail__quantity-decrease"></button>
       <input type="number" class="product-detail__quantity-count" value="1">
-      <button class="product-detail__quantity-increase"></button>
+      <button type="button" class="product-detail__quantity-increase"></button>
     </div>
     <div class="product-detail__stock-message"></div>
     <span class="section-divider" aria-hidden="true"></span>
