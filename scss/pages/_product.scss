@@ -348,25 +348,16 @@ $heavy-fw: 700;
     margin-top: 10px;
   }
 }
+
 .product-tab {
   display: flex;
   justify-content: center;
-  width: 100vh;
-}
-.product-tab {
-  display: flex;
-  justify-content: center;
-  width: 100vh;
+  width: 100%;
 
   &__list {
     width: 80%;
   }
-  &__content {
-    width: 80%;
-    margin: 50px auto;
-  }
 }
-
 .divider {
   margin: 0 11px;
   color: $lightgray;
