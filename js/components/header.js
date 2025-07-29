@@ -60,7 +60,10 @@ export function initHeader() {
         const $cartImg = document
           .querySelector(".header__menu-cart")
           .parentElement.querySelector("img");
-        $cartImg.src = "/assets/icons/icon-shopping-cart.svg";
+        const currentPath = window.location.pathname;
+        if (currentPath !== "/pages/cart.html") {
+          $cartImg.src = "/assets/icons/icon-shopping-cart.svg";
+        }
         const $myPageImg = document.querySelector(".dropdown__button img");
         $myPageImg.src = "/assets/icons/icon-user.svg";
       }
