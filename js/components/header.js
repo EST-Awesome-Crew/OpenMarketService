@@ -27,7 +27,7 @@ export function initHeader() {
     const params = new URLSearchParams({
       query: input,
     });
-    window.location.href = `/?${encodeURI(params)}`;
+    window.location.href = `/?${params}`;
   });
 
   //마이페이지 클릭 토글
