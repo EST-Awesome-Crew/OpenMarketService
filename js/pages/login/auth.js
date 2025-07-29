@@ -28,4 +28,6 @@ export function clearAuth() {
   localStorage.removeItem(ACCESS_KEY);
   localStorage.removeItem(REFRESH_KEY);
   localStorage.removeItem("user");
+  sessionStorage.removeItem("orderList");
+  sessionStorage.removeItem("orderType");
 }
