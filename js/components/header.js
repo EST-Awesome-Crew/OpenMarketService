@@ -1,14 +1,11 @@
-import { refreshAccessToken } from "/js/pages/login/api.js";
-import { clearAuth, getAccessToken } from "/js/pages/login/auth.js";
+import { getAccessToken } from "/js/pages/login/auth.js";
 export function initHeader() {
   //헤더를 위한 js파일입니다.
   //로그인 유무에따른 마이페이지 ,로그인 텍스트 변경
   const $headerMenuLogin = document.querySelector(".header__menu-login");
   const $headerDropdown = document.querySelector(".dropdown");
   const $searchForm = document.querySelector(".header__search-form");
-  refreshAccessToken().then(result => {
-    if (!result) clearAuth(); // false
-  });
+
   const token = getAccessToken();
   if (token) {
     $headerDropdown.style.display = "block";
