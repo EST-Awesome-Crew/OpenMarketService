@@ -178,6 +178,7 @@
 .join-button {
   display: flex;
   justify-content: center;
+  margin-bottom: 110px;
 }
 
 #join {
@@ -209,7 +210,6 @@
     flex-direction: column;
     gap: 10px;
     flex: 1;
-
     label {
       font-size: 16px;
       color: #767676;
