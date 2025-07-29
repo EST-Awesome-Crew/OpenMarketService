@@ -18,18 +18,24 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("footer", "./components/footer.html");
 });
 
-const params = new URLSearchParams(window.location.search);
-const items = JSON.parse(params.get("items"));
-const orderType = params.get("order_type");
+const items = JSON.parse(sessionStorage.getItem("orderList")) || [];
+if (items === null || items === "" || items.length == 0) {
+  alert("주문할 상품이 없습니다.");
+  window.location.href = "/";
+}
+const orderType = sessionStorage.getItem("order_type");
 let resultPrice = 0;
 (async function renderItems() {
   let allPrdPrice = 0;
   let allFeePrice = 0;
 
   for (const element of items) {
-    const response = await fetchWithAuth(`https://api.wenivops.co.kr/services/open-market/products/${element.id}/`, {
-      method: "GET",
-    });
+    const response = await fetchWithAuth(
+      `https://api.wenivops.co.kr/services/open-market/products/${element.id}/`,
+      {
+        method: "GET",
+      }
+    );
     if (!response) return;
     const data = await response.json();
 
@@ -42,7 +48,9 @@ let resultPrice = 0;
     const elementHtml = `
         <article class="checkout__list-item">
           <div class="checkout-item__details">
-            <img src="${data.image}" alt="${data.name}" class="checkout-item__image" />
+            <img src="${data.image}" alt="${
+      data.name
+    }" class="checkout-item__image" />
             <div class="checkout-item__details-wrap">
               <span class="checkout-item__seller">${data.seller.name}</span>
               <h3 class="checkout-item__title">${data.name}</h3>
@@ -65,12 +73,17 @@ let resultPrice = 0;
 
   // 총액 계산
   const listAllPrice = document.querySelector(".checkout-list__all-price dd");
-  listAllPrice.textContent = (allPrdPrice + allFeePrice).toLocaleString() + "원";
+  listAllPrice.textContent =
+    (allPrdPrice + allFeePrice).toLocaleString() + "원";
 
-  const prdPrice = document.querySelector(".payment-summary__details").firstElementChild.querySelector("dd");
+  const prdPrice = document
+    .querySelector(".payment-summary__details")
+    .firstElementChild.querySelector("dd");
   prdPrice.innerHTML = `${allPrdPrice.toLocaleString()}<span class="unit">원</span>`;
 
-  const feePrice = document.querySelector(".payment-summary__details").children[2].querySelector("dd");
+  const feePrice = document
+    .querySelector(".payment-summary__details")
+    .children[2].querySelector("dd");
   feePrice.innerHTML = `${allFeePrice.toLocaleString()}<span class="unit">원</span>`;
 
   const AllPrice = document.querySelector(".payment-summary__total strong");
@@ -89,7 +102,9 @@ $postBtn.addEventListener("click", function () {
 });
 //정보제공 동의
 const $confirm = document.querySelector(".payment-summary__confirm input");
-const $confirmButton = document.querySelector(".payment-summary__confirm button");
+const $confirmButton = document.querySelector(
+  ".payment-summary__confirm button"
+);
 $confirm.addEventListener("click", function () {
   const isChecked = $confirm.checked;
   if (isChecked) {
@@ -119,9 +134,15 @@ $submitBtn.addEventListener("click", async e => {
   const orderPhone1 = document.querySelector("#order-phone1").value.trim();
   const orderPhone2 = document.querySelector("#order-phone2").value.trim();
   const orderPhone3 = document.querySelector("#order-phone3").value.trim();
-  const receiverPhone1 = document.querySelector("#receiver-phone1").value.trim();
-  const receiverPhone2 = document.querySelector("#receiver-phone2").value.trim();
-  const receiverPhone3 = document.querySelector("#receiver-phone3").value.trim();
+  const receiverPhone1 = document
+    .querySelector("#receiver-phone1")
+    .value.trim();
+  const receiverPhone2 = document
+    .querySelector("#receiver-phone2")
+    .value.trim();
+  const receiverPhone3 = document
+    .querySelector("#receiver-phone3")
+    .value.trim();
   //주소 체크
   const postcode = document.querySelector("#postcode").value.trim();
   const address = document.querySelector("#address").value.trim();
@@ -129,14 +150,20 @@ $submitBtn.addEventListener("click", async e => {
   const email = document.querySelector("#order-email").value.trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   //결제수단
-  const checkedPayment = document.querySelector('input[name="payment"]:checked');
+  const checkedPayment = document.querySelector(
+    'input[name="payment"]:checked'
+  );
   //동의
   const agree = document.querySelector('input[name="agree"]');
   if (!namePattern.test(orderName)) {
     alert("주문자 이름은 한글 또는 영문만 입력 가능합니다.");
     return;
   }
-  if (!phonePattern.test(orderPhone1) || !phonePattern.test(orderPhone2) || !phonePattern.test(orderPhone3)) {
+  if (
+    !phonePattern.test(orderPhone1) ||
+    !phonePattern.test(orderPhone2) ||
+    !phonePattern.test(orderPhone3)
+  ) {
     alert("주문자 휴대폰 번호는 숫자만 입력해주세요.");
     return;
   }
@@ -148,7 +175,11 @@ $submitBtn.addEventListener("click", async e => {
     alert("수령인 이름은 한글 또는 영문만 입력 가능합니다.");
     return;
   }
-  if (!phonePattern.test(receiverPhone1) || !phonePattern.test(receiverPhone2) || !phonePattern.test(receiverPhone3)) {
+  if (
+    !phonePattern.test(receiverPhone1) ||
+    !phonePattern.test(receiverPhone2) ||
+    !phonePattern.test(receiverPhone3)
+  ) {
     alert("수령인 휴대폰 번호는 숫자만 입력해주세요.");
     return;
   }
@@ -168,19 +199,46 @@ $submitBtn.addEventListener("click", async e => {
 
   // --- 모든 유효성 검사를 통과했을 때 ---
   // 여기에 결제 API 호출 코드 삽입
-  for (const element of items) {
+
+  if (orderType == "cart_order") {
+    let cart_items = [];
+    for (const element of items) {
+      cart_items.push(element.id);
+    }
+    const orderData = {
+      order_type: "cart_order",
+      cart_items: List, // cartitem에 담긴 product의 id를 리스트 형태로 보내야합니다.
+      total_price: Int,
+      receiver: document.getElementById("receiver-name").value,
+      receiver_phone_number: `${
+        document.getElementById("receiver-phone1").value
+      }${document.getElementById("receiver-phone2").value}${
+        document.getElementById("receiver-phone3").value
+      }`,
+      address: document.getElementById("address").value,
+      address_message:
+        document.getElementById("delivery-message").value || null,
+      payment_method: document.querySelector('input[name="payment"]:checked')
+        .value,
+    };
+    await createCartOrder(orderData);
+  } else if (orderType == "cart_order") {
     const orderData = {
       order_type: "direct_order",
       product: element.id, // 체크된 장바구니 id 배열
       quantity: element.qty,
       total_price: element.price, // 계산된 총 가격
       receiver: document.getElementById("receiver-name").value,
-      receiver_phone_number: `${document.getElementById("receiver-phone1").value}${
-        document.getElementById("receiver-phone2").value
-      }${document.getElementById("receiver-phone3").value}`,
+      receiver_phone_number: `${
+        document.getElementById("receiver-phone1").value
+      }${document.getElementById("receiver-phone2").value}${
+        document.getElementById("receiver-phone3").value
+      }`,
       address: document.getElementById("address").value,
-      address_message: document.getElementById("delivery-message").value || null,
-      payment_method: document.querySelector('input[name="payment"]:checked').value,
+      address_message:
+        document.getElementById("delivery-message").value || null,
+      payment_method: document.querySelector('input[name="payment"]:checked')
+        .value,
     };
     await createCartOrder(orderData);
   }
@@ -189,11 +247,13 @@ $submitBtn.addEventListener("click", async e => {
   window.location.href = "/";
 });
 async function createCartOrder(orderData) {
-  const response = await fetchWithAuth("https://api.wenivops.co.kr/services/open-market/order/", {
-    method: "POST",
-    body: JSON.stringify(orderData),
-  });
+  const response = await fetchWithAuth(
+    "https://api.wenivops.co.kr/services/open-market/order/",
+    {
+      method: "POST",
+      body: JSON.stringify(orderData),
+    }
+  );
 
   if (!response) return;
-  const data = await response.json();
 }
