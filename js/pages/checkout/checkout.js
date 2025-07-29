@@ -1,3 +1,4 @@
+import { fetchWithAuth } from "../login/api.js";
 async function loadComponent(elementId, filePath) {
   try {
     const response = await fetch(filePath);
@@ -12,8 +13,187 @@ async function loadComponent(elementId, filePath) {
   }
 }
 
-// 페이지 로드 시 헤더와 푸터 로드
 document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("header", "./components/header.html");
   loadComponent("footer", "./components/footer.html");
 });
+
+const params = new URLSearchParams(window.location.search);
+const items = JSON.parse(params.get("items"));
+const orderType = params.get("order_type");
+let resultPrice = 0;
+(async function renderItems() {
+  let allPrdPrice = 0;
+  let allFeePrice = 0;
+
+  for (const element of items) {
+    const response = await fetchWithAuth(`https://api.wenivops.co.kr/services/open-market/products/${element.id}/`, {
+      method: "GET",
+    });
+    if (!response) return;
+    const data = await response.json();
+
+    allPrdPrice += data.price * element.qty;
+    allFeePrice += data.shipping_fee;
+    const itemPrice = data.price * element.qty + data.shipping_fee;
+    element.price = itemPrice;
+
+    const cartList = document.querySelector(".checkout__list");
+    const elementHtml = `
+        <article class="checkout__list-item">
+          <div class="checkout-item__details">
+            <img src="${data.image}" alt="${data.name}" class="checkout-item__image" />
+            <div class="checkout-item__details-wrap">
+              <span class="checkout-item__seller">${data.seller.name}</span>
+              <h3 class="checkout-item__title">${data.name}</h3>
+              <dl class="checkout-item__info">
+                <div class="checkout-item__info-row">
+                  <dt>수량</dt>
+                  <dd>${element.qty}개</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <p class="checkout-item__discount">-</p>
+          <div class="checkout-item__delFee">
+            <dd>${data.shipping_fee.toLocaleString()} 원</dd>
+          </div>
+          <p class="checkout-item__price"><strong>${data.price.toLocaleString()}원</strong></p>
+        </article>`;
+    cartList.insertAdjacentHTML("afterbegin", elementHtml);
+  }
+
+  // 총액 계산
+  const listAllPrice = document.querySelector(".checkout-list__all-price dd");
+  listAllPrice.textContent = (allPrdPrice + allFeePrice).toLocaleString() + "원";
+
+  const prdPrice = document.querySelector(".payment-summary__details").firstElementChild.querySelector("dd");
+  prdPrice.innerHTML = `${allPrdPrice.toLocaleString()}<span class="unit">원</span>`;
+
+  const feePrice = document.querySelector(".payment-summary__details").children[2].querySelector("dd");
+  feePrice.innerHTML = `${allFeePrice.toLocaleString()}<span class="unit">원</span>`;
+
+  const AllPrice = document.querySelector(".payment-summary__total strong");
+  AllPrice.textContent = (allPrdPrice + allFeePrice).toLocaleString() + "원";
+  resultPrice = allPrdPrice + allFeePrice;
+})();
+//우편번호
+const $postBtn = document.querySelector(".checkout-order__postcode-btn");
+$postBtn.addEventListener("click", function () {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      document.querySelector("#postcode").value = data.zonecode;
+      document.querySelector("#address").value = data.address;
+    },
+  }).open();
+});
+//정보제공 동의
+const $confirm = document.querySelector(".payment-summary__confirm input");
+const $confirmButton = document.querySelector(".payment-summary__confirm button");
+$confirm.addEventListener("click", function () {
+  const isChecked = $confirm.checked;
+  if (isChecked) {
+    $confirmButton.style.backgroundColor = "#21bf48";
+    $confirmButton.style.cursor = "pointer";
+  } else {
+    $confirmButton.style.backgroundColor = "#c4c4c4";
+    $confirmButton.style.cursor = "not-allowed";
+  }
+  $confirmButton.disabled = !isChecked;
+});
+const form = document.querySelector(".checkout-form");
+const $submitBtn = document.querySelector(".payment-summary__submit");
+$submitBtn.addEventListener("click", async e => {
+  e.preventDefault();
+  // 1) HTML5 기본 유효성 체크
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  // 이름 형식 체크
+  const namePattern = /^[가-힣a-zA-Z\s]+$/;
+  const orderName = document.querySelector("#order-name").value.trim();
+  const receiverName = document.querySelector("#receiver-name").value.trim();
+  // 전화번호 형식 체크
+  const phonePattern = /^[0-9]+$/;
+  const orderPhone1 = document.querySelector("#order-phone1").value.trim();
+  const orderPhone2 = document.querySelector("#order-phone2").value.trim();
+  const orderPhone3 = document.querySelector("#order-phone3").value.trim();
+  const receiverPhone1 = document.querySelector("#receiver-phone1").value.trim();
+  const receiverPhone2 = document.querySelector("#receiver-phone2").value.trim();
+  const receiverPhone3 = document.querySelector("#receiver-phone3").value.trim();
+  //주소 체크
+  const postcode = document.querySelector("#postcode").value.trim();
+  const address = document.querySelector("#address").value.trim();
+  //이메일 체크
+  const email = document.querySelector("#order-email").value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //결제수단
+  const checkedPayment = document.querySelector('input[name="payment"]:checked');
+  //동의
+  const agree = document.querySelector('input[name="agree"]');
+  if (!namePattern.test(orderName)) {
+    alert("주문자 이름은 한글 또는 영문만 입력 가능합니다.");
+    return;
+  }
+  if (!phonePattern.test(orderPhone1) || !phonePattern.test(orderPhone2) || !phonePattern.test(orderPhone3)) {
+    alert("주문자 휴대폰 번호는 숫자만 입력해주세요.");
+    return;
+  }
+  if (!emailPattern.test(email)) {
+    alert("올바른 이메일 형식을 입력해주세요.");
+    return;
+  }
+  if (!namePattern.test(receiverName)) {
+    alert("수령인 이름은 한글 또는 영문만 입력 가능합니다.");
+    return;
+  }
+  if (!phonePattern.test(receiverPhone1) || !phonePattern.test(receiverPhone2) || !phonePattern.test(receiverPhone3)) {
+    alert("수령인 휴대폰 번호는 숫자만 입력해주세요.");
+    return;
+  }
+  if (postcode === "" || address === "") {
+    alert("주소를 모두 입력해주세요.");
+    return;
+  }
+
+  if (!checkedPayment) {
+    alert("결제수단을 선택해주세요.");
+    return;
+  }
+  if (!agree.checked) {
+    alert("주문 내용 확인 및 정보 제공 동의가 필요합니다.");
+    return;
+  }
+
+  // --- 모든 유효성 검사를 통과했을 때 ---
+  // 여기에 결제 API 호출 코드 삽입
+  for (const element of items) {
+    const orderData = {
+      order_type: "direct_order",
+      product: element.id, // 체크된 장바구니 id 배열
+      quantity: element.qty,
+      total_price: element.price, // 계산된 총 가격
+      receiver: document.getElementById("receiver-name").value,
+      receiver_phone_number: `${document.getElementById("receiver-phone1").value}${
+        document.getElementById("receiver-phone2").value
+      }${document.getElementById("receiver-phone3").value}`,
+      address: document.getElementById("address").value,
+      address_message: document.getElementById("delivery-message").value || null,
+      payment_method: document.querySelector('input[name="payment"]:checked').value,
+    };
+    await createCartOrder(orderData);
+  }
+  //장바구니 비우기
+  alert("주문이 완료되었습니다.");
+  window.location.href = "/";
+});
+async function createCartOrder(orderData) {
+  const response = await fetchWithAuth("https://api.wenivops.co.kr/services/open-market/order/", {
+    method: "POST",
+    body: JSON.stringify(orderData),
+  });
+
+  if (!response) return;
+  const data = await response.json();
+}

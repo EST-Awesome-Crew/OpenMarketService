@@ -25,172 +25,67 @@
         <span class="checkout__header-price">주문금액</span>
       </header>
       <section class="checkout__list">
-        <article class="checkout__list-item">
-          <div class="checkout-item__details">
-            <img
-              src="상품이미지.jpg"
-              alt="상품 이미지"
-              class="checkout-item__image"
-            />
-            <div class="checkout-item__details-wrap">
-              <span class="checkout-item__seller">백엔드글로벌</span>
-              <h3 class="checkout-item__title">팀러닝 개발자 무료 담요</h3>
-              <dl class="checkout-item__info">
-                <div class="checkout-item__info-row">
-                  <dt>수량</dt>
-                  <dd>1개</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-          <p class="checkout-item__discount">-</p>
-          <div class="checkout-item__delFee">
-            <dd>무료배송</dd>
-          </div>
-          <p class="checkout-item__price"><strong>17,500원</strong></p>
-        </article>
-        <article class="checkout__list-item">
-          <div class="checkout-item__details">
-            <img
-              src="상품이미지.jpg"
-              alt="상품 이미지"
-              class="checkout-item__image"
-            />
-            <div class="checkout-item__details-wrap">
-              <span class="checkout-item__seller">백엔드글로벌</span>
-              <h3 class="checkout-item__title">팀러닝 개발자 무료 담요</h3>
-              <dl class="checkout-item__info">
-                <div class="checkout-item__info-row">
-                  <dt>수량</dt>
-                  <dd>1개</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-          <p class="checkout-item__discount">-</p>
-          <div class="checkout-item__delFee">
-            <dd>무료배송</dd>
-          </div>
-          <p class="checkout-item__price"><strong>17,500원</strong></p>
-        </article>
-        <div class="checkout-list__All-price">
+        <div class="checkout-list__all-price">
           <dt>총 주문금액</dt>
-          <dd>46, 500</dd>
+          <dd></dd>
         </div>
       </section>
       <section class="checkout-order">
         <h3 class="checkout-address__title">배송정보</h3>
         <!-- 주문자 정보 -->
-        <fieldset class="checkout-order__section">
-          <legend>주문자 정보</legend>
-          <div class="checkout-order__row">
-            <label for="order-name">이름</label>
-            <input type="text" id="order-name" name="order-name" required />
-          </div>
-          <div class="checkout-order__row">
-            <span class="checkout-order__label">휴대폰</span>
-            <input
-              type="tel"
-              id="order-phone1"
-              name="order-phone1"
-              size="3"
-              required
-            />
-            -
-            <input
-              type="tel"
-              id="order-phone2"
-              name="order-phone2"
-              size="4"
-              required
-            />
-            -
-            <input
-              type="tel"
-              id="order-phone3"
-              name="order-phone3"
-              size="4"
-              required
-            />
-          </div>
-          <div class="checkout-order__row">
-            <label for="order-email">이메일</label>
-            <input type="email" id="order-email" name="order-email" required />
-          </div>
-        </fieldset>
-
-        <!-- 배송지 정보 -->
-        <fieldset class="checkout-order__section">
-          <legend>배송지 정보</legend>
-          <div class="checkout-order__row">
-            <label for="receiver-name">수령인</label>
-            <input
-              type="text"
-              id="receiver-name"
-              name="receiver-name"
-              required
-            />
-          </div>
-          <div class="checkout-order__row">
-            <span class="checkout-order__label">휴대폰</span>
-            <input
-              type="tel"
-              id="receiver-phone1"
-              name="receiver-phone1"
-              size="3"
-              required
-            />
-            -
-            <input
-              type="tel"
-              id="receiver-phone2"
-              name="receiver-phone2"
-              size="4"
-              required
-            />
-            -
-            <input
-              type="tel"
-              id="receiver-phone3"
-              name="receiver-phone3"
-              size="4"
-              required
-            />
-          </div>
-          <div class="checkout-order__row checkout-order__address">
-            <label for="postcode">배송주소</label>
-            <input
-              type="text"
-              id="postcode"
-              name="postcode"
-              placeholder="우편번호"
-              readonly
-            />
-            <button type="button" class="checkout-order__postcode-btn">
-              우편번호 조회
-            </button>
-            <div class="checkout-order__address-detail">
-              <label for="address" class="sr-only">기본 주소</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder="기본 주소"
-              />
-              <label for="address-detail" class="sr-only">상세 주소</label>
-              <input
-                type="text"
-                id="address-detail"
-                name="address-detail"
-                placeholder="상세 주소"
-              />
+        <form class="checkout-form">
+          <fieldset class="checkout-order__section">
+            <legend>주문자 정보</legend>
+            <div class="checkout-order__row">
+              <label for="order-name">이름</label>
+              <input type="text" id="order-name" name="order-name" required1 />
             </div>
-          </div>
-          <div class="checkout-order__row">
-            <label for="delivery-message">배송 메시지</label>
-            <input type="text" id="delivery-message" name="delivery-message" />
-          </div>
-        </fieldset>
+            <div class="checkout-order__row">
+              <span class="checkout-order__label">휴대폰</span>
+              <input type="tel" id="order-phone1" name="order-phone1" size="3" required1 />
+              -
+              <input type="tel" id="order-phone2" name="order-phone2" size="4" required1 />
+              -
+              <input type="tel" id="order-phone3" name="order-phone3" size="4" required1 />
+            </div>
+            <div class="checkout-order__row">
+              <label for="order-email">이메일</label>
+              <input type="email" id="order-email" name="order-email" required1 />
+            </div>
+          </fieldset>
+
+          <!-- 배송지 정보 -->
+          <fieldset class="checkout-order__section">
+            <legend>배송지 정보</legend>
+            <div class="checkout-order__row">
+              <label for="receiver-name">수령인</label>
+              <input type="text" id="receiver-name" name="receiver-name" required1 />
+            </div>
+            <div class="checkout-order__row">
+              <span class="checkout-order__label">휴대폰</span>
+              <input type="tel" id="receiver-phone1" name="receiver-phone1" size="3" required1 />
+              -
+              <input type="tel" id="receiver-phone2" name="receiver-phone2" size="4" required1 />
+              -
+              <input type="tel" id="receiver-phone3" name="receiver-phone3" size="4" required1 />
+            </div>
+            <div class="checkout-order__row checkout-order__address">
+              <label for="postcode">배송주소</label>
+              <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly />
+              <button type="button" class="checkout-order__postcode-btn">우편번호 조회</button>
+              <div class="checkout-order__address-detail">
+                <label for="address" class="sr-only">기본 주소</label>
+                <input type="text" id="address" name="address" placeholder="기본 주소" />
+                <label for="address-detail" class="sr-only">상세 주소</label>
+                <input type="text" id="address-detail" name="address-detail" placeholder="상세 주소" />
+              </div>
+            </div>
+            <div class="checkout-order__row">
+              <label for="delivery-message">배송 메시지</label>
+              <input type="text" id="delivery-message" name="delivery-message" />
+            </div>
+          </fieldset>
+        </form>
       </section>
       <section class="checkout-payment">
         <fieldset class="payment-method">
@@ -206,10 +101,7 @@
                   class="payment-method__checkbox-input"
                   checked
                 />
-                <span
-                  class="payment-method__checkbox-span"
-                  aria-hidden="true"
-                ></span>
+                <span class="payment-method__checkbox-span" aria-hidden="true"></span>
                 신용/체크카드
               </label>
             </li>
@@ -222,26 +114,14 @@
                   id="deposit"
                   class="payment-method__checkbox-input"
                 />
-                <span
-                  class="payment-method__checkbox-span"
-                  aria-hidden="true"
-                ></span>
+                <span class="payment-method__checkbox-span" aria-hidden="true"></span>
                 무통장 입금
               </label>
             </li>
             <li>
               <label class="payment-method__checkbox-label" for="phone">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="phone"
-                  id="phone"
-                  class="payment-method__checkbox-input"
-                />
-                <span
-                  class="payment-method__checkbox-span"
-                  aria-hidden="true"
-                ></span>
+                <input type="radio" name="payment" value="phone" id="phone" class="payment-method__checkbox-input" />
+                <span class="payment-method__checkbox-span" aria-hidden="true"></span>
                 휴대폰 결제
               </label>
             </li>
@@ -254,10 +134,7 @@
                   id="naverpay"
                   class="payment-method__checkbox-input"
                 />
-                <span
-                  class="payment-method__checkbox-span"
-                  aria-hidden="true"
-                ></span>
+                <span class="payment-method__checkbox-span" aria-hidden="true"></span>
                 네이버페이
               </label>
             </li>
@@ -270,10 +147,7 @@
                   id="kakaopay"
                   class="payment-method__checkbox-input"
                 />
-                <span
-                  class="payment-method__checkbox-span"
-                  aria-hidden="true"
-                ></span>
+                <span class="payment-method__checkbox-span" aria-hidden="true"></span>
                 카카오페이
               </label>
             </li>
@@ -286,34 +160,35 @@
           <dl class="payment-summary__details">
             <div class="payment-summary__item">
               <dt>상품금액</dt>
-              <dd>46,500</dd>
+              <dd>46,500<span class="unit">원</span></dd>
             </div>
             <div class="payment-summary__item">
               <dt>할인금액</dt>
-              <dd>0</dd>
+              <dd>0<span class="unit">원</span></dd>
             </div>
             <div class="payment-summary__item">
               <dt>배송비</dt>
-              <dd>0</dd>
+              <dd>0<span class="unit">원</span></dd>
             </div>
             <div class="payment-summary__item payment-summary__total">
               <dt>결제금액</dt>
-              <dd><strong>46,500</strong></dd>
+              <dd>
+                <strong>46,500 원</strong>
+              </dd>
             </div>
           </dl>
           <div class="payment-summary__confirm">
             <label>
-              <input type="checkbox" name="agree" required />
+              <input type="checkbox" name="agree" required1 />
               주문 내용을 확인하였으며 정보 제공 동의에 동의합니다.
             </label>
-            <button type="submit" class="payment-summary__submit" disabled>
-              결제하기
-            </button>
+            <button type="button" class="payment-summary__submit" disabled>결제하기</button>
           </div>
         </div>
       </section>
     </main>
-    <script src="../js/pages/checkout/checkout.js"></script>
     <div id="footer"></div>
+    <script type="module" src="../js/pages/checkout/checkout.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>
