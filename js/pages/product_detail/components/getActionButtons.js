@@ -1,5 +1,5 @@
 import { showLoginModal } from "./showLoginModal.js";
-import { getAccessToken, getRefreshToken } from "../../login/auth.js";
+import { fetchWithAuth } from "../../login/api.js"; // fetchWithAuth 임포트
 
 export function getActionButtons(productId, stock) {
   function checkAuthAndUserType() {
@@ -12,9 +12,6 @@ export function getActionButtons(productId, stock) {
     if (!isLoggedIn) {
       showLoginModal(
         () => {
-          console.log(
-            "사용자가 로그인에 동의했습니다. 로그인 페이지로 이동합니다."
-          );
           window.location.href = "/login.html";
         },
         () => {
@@ -43,11 +40,8 @@ export function getActionButtons(productId, stock) {
       ? Number(inputQuantityElement.value)
       : 1;
 
-    const jwt = getAccessToken();
-
     if (isNaN(currentQuantity) || currentQuantity < 1) {
       alert("수량은 1개 이상으로 입력해주세요.");
-
       return;
     }
 
@@ -56,22 +50,26 @@ export function getActionButtons(productId, stock) {
       return;
     }
 
+    const cartItemData = {
+      product_id: productId,
+      quantity: currentQuantity,
+      order_type: "cart_order",
+    };
+
     try {
-      // 장바구니 추가 API 호출
-      const response = await fetch(
+      const response = await fetchWithAuth(
         `https://api.wenivops.co.kr/services/open-market/cart/`,
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            product_id: productId,
-            quantity: currentQuantity,
-          }),
+          body: JSON.stringify(cartItemData),
         }
       );
+
+      if (!response) {
+        alert("장바구니 추가에 실패했습니다. 다시 시도해주세요.");
+        sessionStorage.removeItem("cartItemToAdd");
+        return;
+      }
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -84,19 +82,12 @@ export function getActionButtons(productId, stock) {
 
       const result = await response.json();
       console.log("장바구니 추가 성공:", result);
-
-      const confirmMoveToCart = confirm(
-        "상품이 장바구니에 추가되었습니다!\n장바구니 페이지로 이동하시겠습니까?"
-      );
-
-      if (confirmMoveToCart) {
-        window.location.href = "/pages/cart.html";
-      } else {
-        console.log("장바구니 이동을 취소했습니다.");
-      }
+      alert("상품이 장바구니에 추가되었습니다.");
+      sessionStorage.removeItem("cartItemToAdd");
     } catch (error) {
       console.error("장바구니 추가 중 오류:", error);
-      alert(`장바구니 추가 중 오류가 발생했습니다: ${error.message}`);
+      alert("장바구니 추가 중 오류가 발생했습니다.");
+      sessionStorage.removeItem("cartItemToAdd");
     }
   }
 
@@ -114,7 +105,6 @@ export function getActionButtons(productId, stock) {
 
     if (isNaN(currentQuantity) || currentQuantity < 1) {
       alert("수량은 1개 이상으로 입력해주세요.");
-
       return;
     }
 
@@ -123,13 +113,14 @@ export function getActionButtons(productId, stock) {
       return;
     }
 
-    const params = new URLSearchParams();
-    params.append("productId", productId);
-    params.append("quantity", currentQuantity);
-    params.append("order_type", "direct_order");
+    const orderData = {
+      id: productId,
+      qty: currentQuantity,
+    };
+    sessionStorage.setItem("orderList", JSON.stringify(orderData));
+    sessionStorage.setItem("order_type", "direct_order");
 
-    const orderPageUrl = `/pages/checkout.html?${params.toString()}`;
-    window.location.href = orderPageUrl;
+    window.location.href = "/pages/checkout.html";
   }
 
   function setupEventListeners(containerElement) {
