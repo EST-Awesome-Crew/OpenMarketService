@@ -13,6 +13,20 @@ $default-fw: 400;
 $light-fw: 500;
 $heavy-fw: 700;
 
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #000;
+}
+
+main {
+  width: 100vw;
+  padding: 0 10vw;
+}
+
 .section-divider {
   display: block;
   width: 100%;
@@ -26,7 +40,6 @@ $heavy-fw: 700;
     justify-content: center;
     width: 100%;
     margin-top: 80px;
-    color: #000;
   }
 
   &__image {
@@ -346,24 +359,6 @@ $heavy-fw: 700;
   }
   &__content {
     margin-top: 10px;
-  }
-}
-.product-tab {
-  display: flex;
-  justify-content: center;
-  width: 100vh;
-}
-.product-tab {
-  display: flex;
-  justify-content: center;
-  width: 100vh;
-
-  &__list {
-    width: 80%;
-  }
-  &__content {
-    width: 80%;
-    margin: 50px auto;
   }
 }
 
