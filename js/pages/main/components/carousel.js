@@ -7,6 +7,7 @@ export function carouselControl() {
     ".carousel-container_indicator"
   );
   let count = 0;
+  let autoSlideCarousel;
 
   //캐러셀 이미지 배열
   const carouselImage = [
@@ -34,6 +35,29 @@ export function carouselControl() {
   }
 
   /**
+   * 캐러셀 슬라이드 자동으로 넘기는 함수
+   */
+  function autoSlide() {
+    count++;
+    if (count > carouselImage.length - 1) {
+      count = 0;
+    }
+    carouselSlide.style.transform = `translateX(-${count * 100}%)`;
+    renderCarouselIndicator();
+  }
+
+  /**
+   * 3초마다 슬라이드
+   */
+  function startAutoSlide() {
+    autoSlideCarousel = setInterval(autoSlide, 3000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideCarousel);
+  }
+
+  /**
    * 캐러셀 이미지 베열을 순회하면서 li로 이미지를 추가하는 함수
    */
   function renderCarouselImages() {
@@ -53,10 +77,17 @@ export function carouselControl() {
 
   renderCarouselImages();
   renderCarouselIndicator();
+
+  startAutoSlide();
+
   carouselButton1?.addEventListener("click", () => {
+    stopAutoSlide();
     carouselButton(carouselButton1);
+    startAutoSlide();
   });
   carouselButton2?.addEventListener("click", () => {
+    stopAutoSlide();
     carouselButton(carouselButton2);
+    startAutoSlide();
   });
 }
