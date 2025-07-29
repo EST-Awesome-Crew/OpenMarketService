@@ -24,7 +24,7 @@ function getProductIdFromUrlParams() {
   if (productId) {
     return productId;
   } else {
-    window.location.href = "/error.html";
+    window.location.href = "/pages/error.html";
     return null;
   }
 }

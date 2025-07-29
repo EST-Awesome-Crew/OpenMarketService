@@ -17,6 +17,12 @@ export function setQuantityAndPrice(data) {
   );
   const priceResult = document.querySelector(".product-detail__price-number");
   const stockMessage = document.querySelector(".product-detail__stock-message");
+  stockMessage.style.display = "block";
+  stockMessage.style.color = "red";
+  stockMessage.style.marginBottom = "30px";
+
+  const buyNowBtn = document.querySelector(".product-detail__buy-now");
+  const addToCartBtn = document.querySelector(".product-detail__add-to-cart");
 
   function updateUI() {
     let currentQuantity = Number(inputQuantity.value);
@@ -26,17 +32,36 @@ export function setQuantityAndPrice(data) {
       inputQuantity.value = 1;
     }
     if (currentQuantity > stock) {
-      inputQuantity.value = stock; // 재고만큼만 입력되도록 강제
+      inputQuantity.value = stock;
       currentQuantity = stock;
 
       if (stockMessage) {
-        stockMessage.textContent = `재고가 부족합니다! (현재 재고: ${stock}개)`;
-        stockMessage.style.display = "block"; // 메시지 표시
-        stockMessage.style.color = "red"; // 빨간색으로 표시
+        stockMessage.textContent = `재고 소진`;
+        stockMessage.style.display = "block";
+        stockMessage.style.color = "red";
+        stockMessage.style.marginBottom = "30px";
+
+        decreaseBtn.disabled = true;
+        increaseBtn.disabled = true;
+        inputQuantity.disabled = true;
+        buyNowBtn.disabled = true;
+        addToCartBtn.disabled = true;
+
+        buyNowBtn.classList.add("deactivate");
+        addToCartBtn.classList.add("deactivate");
       }
     } else {
       if (stockMessage) {
         stockMessage.style.display = "none";
+
+        decreaseBtn.disabled = false;
+        increaseBtn.disabled = false;
+        inputQuantity.disabled = false;
+        buyNowBtn.disabled = false;
+        addToCartBtn.disabled = false;
+
+        buyNowBtn.classList.remove("deactivate");
+        addToCartBtn.classList.remove("deactivate");
       }
     }
 
@@ -53,18 +78,12 @@ export function setQuantityAndPrice(data) {
   });
 
   increaseBtn.addEventListener("click", () => {
-    // 변경: 재고 물량 체크 로직 강화
     if (Number(inputQuantity.value) < stock) {
-      //
       inputQuantity.value = Number(inputQuantity.value) + 1;
       updateUI();
     } else {
-      // 재고가 없을 때도 메시지 표시 (증가 버튼 클릭 시)
       if (stockMessage) {
         stockMessage.textContent = `재고가 부족합니다! ${stock}개 이하로 주문해주세요.`;
-        stockMessage.style.display = "block";
-        stockMessage.style.color = "red";
-        stockMessage.style.marginBottom = "30px";
       }
     }
   });
@@ -72,6 +91,5 @@ export function setQuantityAndPrice(data) {
   if (!inputQuantity.value) {
     inputQuantity.value = 1;
   }
-  // 초기 UI 설정
   updateUI();
 }
