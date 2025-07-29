@@ -66,7 +66,6 @@ export async function render(
                 id="check${id}"
                 aria-label="상품 선택"
                 checked
-                disabled
               />
               <span class="cart-item__checkbox-span" aria-hidden="true"></span>
             </label>
