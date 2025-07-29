@@ -41,8 +41,8 @@ export function productDetail(productId) {
       ${getProductSummary(data)}
       ${renderQuantityAndPrice(data)}
       <div class="product-detail__actions">
-        <button class="product-detail__buy-now">바로 구매</button>
-        <button class="product-detail__add-to-cart">장바구니</button>
+        <button type="button" class="product-detail__buy-now">바로 구매</button>
+        <button type="button" class="product-detail__add-to-cart">장바구니</button>
       </div>
       </div> </div> 
     `;
