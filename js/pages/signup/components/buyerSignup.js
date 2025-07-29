@@ -29,6 +29,7 @@ export function buyerSignup() {
 
       if (response.ok) {
         // 성공 시
+        console.log("회원가입 성공:", data);
         return {
           success: true,
           data: data,
@@ -36,6 +37,7 @@ export function buyerSignup() {
         };
       } else {
         // 실패 시 - 에러 필드별로 메시지 처리
+        console.log("회원가입 실패:", data);
         return {
           success: false,
           errors: data,
@@ -67,12 +69,15 @@ export function buyerSignup() {
     const phone3 = document.querySelector("#user-phoneNumber3").value;
     const phone_number = phone1 + phone2 + phone3;
 
-    return {
+    const formData = {
       username,
       password,
       name,
       phone_number,
     };
+
+    console.log("수집된 폼 데이터:", formData);
+    return formData;
   }
 
   /**
@@ -190,23 +195,22 @@ export function buyerSignup() {
 
   /**
    * 회원가입 성공 시 처리
-   * @param {Object} data - 성공 응답 데이터
+   * @par/indexdata - 성공 응답 데이터
    */
-  function handleSignupSuccess(data) {
-    alert("회원가입이 완료되었습니다!");
-
-    // index.html로 이동
-    window.location.href = "/index.html";
+  async function handleSignupSuccess(data) {
+    alert("회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.");
+    window.location.href = "/pages/login.html"; // 로그인 페이지로 이동
   }
-
   /**
    * 회원가입 처리 메인 함수
    */
   async function handleSignup() {
+    console.log("handleSignup 함수 시작");
     const formData = collectFormData();
 
     // 로딩 상태 표시
     const submitButton = document.querySelector("#join");
+    console.log("제출 버튼:", submitButton);
 
     if (!submitButton) {
       console.error("제출 버튼을 찾을 수 없습니다!");
@@ -218,11 +222,15 @@ export function buyerSignup() {
     submitButton.disabled = true;
 
     try {
+      console.log("API 호출 시작...");
       const result = await registerBuyer(formData);
+      console.log("API 호출 결과:", result);
 
       if (result.success) {
+        console.log("회원가입 성공, 성공 처리 시작...");
         handleSignupSuccess(result.data);
       } else {
+        console.log("회원가입 실패, 에러 처리 시작...");
         if (result.errors) {
           displayErrors(result.errors);
         } else if (result.message) {
