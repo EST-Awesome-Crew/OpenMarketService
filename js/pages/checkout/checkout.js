@@ -54,11 +54,9 @@ let resultPrice = 0;
             <div class="checkout-item__details-wrap">
               <span class="checkout-item__seller">${data.seller.name}</span>
               <h3 class="checkout-item__title">${data.name}</h3>
-              <dl class="checkout-item__info">
-                <div class="checkout-item__info-row">
-                  <dt>수량</dt>
-                  <dd>${element.qty}개</dd>
-                </div>
+              <dl class="checkout-item__info checkout-item__info-row">
+                <dt>수량</dt>
+                <dd>${element.qty}개</dd>
               </dl>
             </div>
           </div>
@@ -70,7 +68,6 @@ let resultPrice = 0;
         </article>`;
     cartList.insertAdjacentHTML("afterbegin", elementHtml);
   }
-
   // 총액 계산
   const listAllPrice = document.querySelector(".checkout-list__all-price dd");
   listAllPrice.textContent =

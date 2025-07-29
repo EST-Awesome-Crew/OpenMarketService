@@ -87,7 +87,7 @@ async function login() {
       } else {
         saveTokens(data.access, data.refresh);
         localStorage.setItem("user", JSON.stringify(data.user));
-        window.history.back();
+        window.location.href = sessionStorage.getItem("previousPage");
       }
     } else if (data.error) {
       alert(data.error);
