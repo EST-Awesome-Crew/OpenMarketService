@@ -47,7 +47,6 @@
     &__image {
       width: 104px;
       height: 104px;
-      border: 1px solid black;
       border-radius: 10px;
     }
     &__details-wrap {
@@ -109,7 +108,7 @@
       line-height: 100%;
     }
   }
-  &-list__All-price {
+  &-list__all-price {
     display: flex;
     float: right;
     margin-top: 30px;
@@ -121,14 +120,6 @@
       margin-right: 10px;
     }
     dd {
-      font-family: "Spoqa Han Sans Neo", sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 100%;
-      color: #eb5757;
-    }
-    dd::after {
-      content: " 원";
       font-family: "Spoqa Han Sans Neo", sans-serif;
       font-weight: 700;
       font-size: 24px;
@@ -162,6 +153,7 @@
     height: 56px;
     border-bottom: 1px solid #c4c4c4;
     align-content: center;
+    legend,
     label,
     span {
       display: inline-block;
@@ -169,6 +161,7 @@
       font-family: "Spoqa Han Sans Neo", sans-serif;
       font-weight: 400;
       font-size: 16px;
+      border-bottom: 0;
     }
     input {
       border: 1px solid #c4c4c4;
@@ -331,8 +324,7 @@
       font-weight: 700;
       font-size: 18px;
 
-      &::after {
-        content: "원";
+      .unit {
         margin-left: 5px;
         font-family: "Spoqa Han Sans Neo", sans-serif;
         font-weight: 400;
@@ -380,6 +372,7 @@
       font-weight: 700;
       font-size: 24px;
       margin-bottom: 4px;
+      cursor: not-allowed;
     }
   }
 }
