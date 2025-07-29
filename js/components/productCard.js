@@ -1,1 +1,0 @@
-//productCard를 구현하기 위한 js파일입니다.

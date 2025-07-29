@@ -1,5 +1,5 @@
 import { showLoginModal } from "./showLoginModal.js";
-import { fetchWithAuth } from "../../login/api.js"; // fetchWithAuth 임포트
+import { fetchWithAuth } from "../../login/api.js";
 
 export function getActionButtons(productId, stock) {
   function checkAuthAndUserType() {
@@ -28,25 +28,49 @@ export function getActionButtons(productId, stock) {
     return true;
   }
 
+  function updateQuantityDisplay(inputElement, value) {
+    if (inputElement) {
+      inputElement.value = value;
+    }
+  }
+
+  function getQuantityInput() {
+    return document.querySelector(".product-detail__quantity-count");
+  }
+
+  function displayStockMessage(message) {
+    const stockMessageElement = document.querySelector(
+      ".product-detail__stock-message"
+    );
+    if (stockMessageElement) {
+      stockMessageElement.textContent = message;
+      stockMessageElement.style.display = message ? "block" : "none";
+    }
+  }
+
+  function validateQuantity(quantity) {
+    if (isNaN(quantity) || quantity < 1) {
+      alert("수량은 1개 이상으로 입력해주세요.");
+      return false;
+    }
+    if (quantity > stock) {
+      alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+      return false;
+    }
+    return true;
+  }
+
   async function handleAddToCart() {
     if (!checkAuthAndUserType()) {
       return;
     }
 
-    const inputQuantityElement = document.querySelector(
-      ".product-detail__quantity-count"
-    );
+    const inputQuantityElement = getQuantityInput();
     const currentQuantity = inputQuantityElement
       ? Number(inputQuantityElement.value)
       : 1;
 
-    if (isNaN(currentQuantity) || currentQuantity < 1) {
-      alert("수량은 1개 이상으로 입력해주세요.");
-      return;
-    }
-
-    if (currentQuantity > stock) {
-      alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+    if (!validateQuantity(currentQuantity)) {
       return;
     }
 
@@ -102,20 +126,12 @@ export function getActionButtons(productId, stock) {
       return;
     }
 
-    const inputQuantityElement = document.querySelector(
-      ".product-detail__quantity-count"
-    );
+    const inputQuantityElement = getQuantityInput();
     const currentQuantity = inputQuantityElement
       ? Number(inputQuantityElement.value)
       : 1;
 
-    if (isNaN(currentQuantity) || currentQuantity < 1) {
-      alert("수량은 1개 이상으로 입력해주세요.");
-      return;
-    }
-
-    if (currentQuantity > stock) {
-      alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+    if (!validateQuantity(currentQuantity)) {
       return;
     }
 
@@ -136,12 +152,66 @@ export function getActionButtons(productId, stock) {
     const addToCartBtn = containerElement.querySelector(
       ".product-detail__add-to-cart"
     );
+    const inputQuantityElement = getQuantityInput();
+    const minusBtn = containerElement.querySelector(
+      ".product-detail__quantity-minus"
+    );
+    const plusBtn = containerElement.querySelector(
+      ".product-detail__quantity-plus"
+    );
+
+    if (stock === 0) {
+      displayStockMessage("재고 소진");
+      if (buyNowBtn) buyNowBtn.disabled = true;
+      if (addToCartBtn) addToCartBtn.disabled = true;
+      if (inputQuantityElement) inputQuantityElement.disabled = true;
+      if (minusBtn) minusBtn.disabled = true;
+      if (plusBtn) plusBtn.disabled = true;
+    } else {
+      displayStockMessage("");
+    }
 
     if (buyNowBtn) {
       buyNowBtn.addEventListener("click", handleBuyNow);
     }
     if (addToCartBtn) {
       addToCartBtn.addEventListener("click", handleAddToCart);
+    }
+
+    if (inputQuantityElement) {
+      inputQuantityElement.addEventListener("change", event => {
+        let value = Number(event.target.value);
+        if (isNaN(value) || value < 1) {
+          value = 1;
+          alert("수량은 1개 이상으로 입력해주세요.");
+        } else if (value > stock) {
+          value = stock;
+          alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+        }
+        updateQuantityDisplay(inputQuantityElement, value);
+      });
+    }
+
+    if (minusBtn) {
+      minusBtn.addEventListener("click", () => {
+        const currentQuantity = Number(inputQuantityElement.value);
+        if (currentQuantity > 1) {
+          updateQuantityDisplay(inputQuantityElement, currentQuantity - 1);
+        } else {
+          alert("수량은 1개 이상으로 입력해주세요.");
+        }
+      });
+    }
+
+    if (plusBtn) {
+      plusBtn.addEventListener("click", () => {
+        const currentQuantity = Number(inputQuantityElement.value);
+        if (currentQuantity < stock) {
+          updateQuantityDisplay(inputQuantityElement, currentQuantity + 1);
+        } else {
+          alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+        }
+      });
     }
   }
 
