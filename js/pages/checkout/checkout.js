@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadComponent("footer", "./components/footer.html");
 });
 
-const items = JSON.parse(sessionStorage.getItem("orderList")) || [];
+let items = JSON.parse(sessionStorage.getItem("orderList")) || [];
+if (!Array.isArray(items)) {
+  items = [items];
+}
 if (items === null || items === "" || items.length == 0) {
   alert("주문할 상품이 없습니다.");
   window.location.href = "/";
@@ -201,11 +204,19 @@ $submitBtn.addEventListener("click", async e => {
     let cart_items = [];
     for (const element of items) {
       cart_items.push(element.id);
+      if (element.qty < checkStock(element.id)) {
+        alert("재고가 소진되었습니다.");
+        window.location.href = "/";
+        return;
+      }
     }
+    const price = document.querySelector(
+      ".payment-summary__total dd strong"
+    ).textContent;
     const orderData = {
       order_type: "cart_order",
-      cart_items: List, // cartitem에 담긴 product의 id를 리스트 형태로 보내야합니다.
-      total_price: Int,
+      cart_items: cart_items, // cartitem에 담긴 product의 id를 리스트 형태로 보내야합니다.
+      total_price: parseInt(price.replace(/[^0-9]/g, ""), 10),
       receiver: document.getElementById("receiver-name").value,
       receiver_phone_number: `${
         document.getElementById("receiver-phone1").value
@@ -219,12 +230,28 @@ $submitBtn.addEventListener("click", async e => {
         .value,
     };
     await createCartOrder(orderData);
-  } else if (orderType == "cart_order") {
+  } else if (orderType == "direct_order") {
+    let cart_items = [];
+    let qty = 0;
+    for (const element of items) {
+      cart_items = element.id;
+      qty = element.qty;
+      if (element.qty < checkStock(element.id)) {
+        console.log(element.qty);
+        console.log(checkStock(element.id));
+        alert("재고가 소진된 제품이 있습니다 확인해주세요.");
+        window.location.href = "/";
+        return;
+      }
+    }
+    const price = document.querySelector(
+      ".payment-summary__total dd strong"
+    ).textContent;
     const orderData = {
       order_type: "direct_order",
-      product: element.id, // 체크된 장바구니 id 배열
-      quantity: element.qty,
-      total_price: element.price, // 계산된 총 가격
+      product: cart_items,
+      quantity: qty,
+      total_price: parseInt(price.replace(/[^0-9]/g, ""), 10),
       receiver: document.getElementById("receiver-name").value,
       receiver_phone_number: `${
         document.getElementById("receiver-phone1").value
@@ -237,7 +264,8 @@ $submitBtn.addEventListener("click", async e => {
       payment_method: document.querySelector('input[name="payment"]:checked')
         .value,
     };
-    await createCartOrder(orderData);
+    const response = await createCartOrder(orderData);
+    const data = response.json();
   }
   //장바구니 비우기
   alert("주문이 완료되었습니다.");
@@ -253,4 +281,16 @@ async function createCartOrder(orderData) {
   );
 
   if (!response) return;
+  return response;
+}
+async function checkStock(id) {
+  const response = await fetchWithAuth(
+    `https://api.wenivops.co.kr/services/open-market/products/${id}`,
+    {
+      method: "GET",
+    }
+  );
+  const data = await response.json();
+  if (!response) return false;
+  return data.stock;
 }

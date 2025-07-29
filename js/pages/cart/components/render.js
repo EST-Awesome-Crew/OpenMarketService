@@ -260,7 +260,7 @@ export async function render(
       }
       selectedItem.push({ id, qty, cartId });
       sessionStorage.setItem("orderList", JSON.stringify(selectedItem));
-      sessionStorage.setItem("orderType", order_type);
+      sessionStorage.setItem("order_type", order_type);
       window.location.href = `/pages/checkout.html`;
     });
   });
@@ -347,7 +347,7 @@ export async function render(
       const qty = Number(await checkStock2(x.quantity, x.product.id));
       console.log(qty, x.product.id);
       sessionStorage.setItem("orderList", JSON.stringify(selectedItems));
-      sessionStorage.setItem("orderType", order_type);
+      sessionStorage.setItem("order_type", order_type);
       if (qty < x.quantity) {
         item.querySelector(".cart-item__checkbox-input").remove();
         item.querySelector(".cart-item__order-btn").disabled = true;
