@@ -1,3 +1,4 @@
+// setQuantityAndPrice.js 파일
 export function setQuantityAndPrice(data) {
   const price = data?.price;
   const stock = data?.stock;
@@ -48,6 +49,7 @@ export function setQuantityAndPrice(data) {
 
   function updateUI() {
     let currentQuantity = Number(inputQuantity.value);
+    let originalQuantity = Number(inputQuantity.dataset.originalValue || 1); // 변경 전 값 저장
 
     if (stock === 0) {
       displayStockMessage("재고 소진");
@@ -59,12 +61,23 @@ export function setQuantityAndPrice(data) {
     }
 
     if (isNaN(currentQuantity) || currentQuantity < 1) {
+      if (currentQuantity !== originalQuantity) {
+        // 값이 실제로 변경된 경우에만 alert
+        alert("수량은 1개 이상으로 입력해주세요.");
+      }
       currentQuantity = 1;
       inputQuantity.value = 1;
     } else if (currentQuantity > stock) {
+      if (currentQuantity !== originalQuantity) {
+        // 값이 실제로 변경된 경우에만 alert
+        alert(`현재 선택하신 수량은 재고(${stock}개)보다 많습니다.`);
+      }
       currentQuantity = stock;
       inputQuantity.value = stock;
     }
+
+    // 변경된 값을 originalValue에 저장
+    inputQuantity.dataset.originalValue = currentQuantity;
 
     displayStockMessage("");
     setButtonAndInputState(false);
@@ -101,6 +114,8 @@ export function setQuantityAndPrice(data) {
     inputQuantity.addEventListener("change", event => {
       updateUI();
     });
+    // 초기 렌더링 시 originalValue 설정
+    inputQuantity.dataset.originalValue = Number(inputQuantity.value || 1);
   }
 
   if (!inputQuantity.value) {
