@@ -12,7 +12,7 @@ export function initHeader() {
   } else {
     $headerMenuLogin.parentElement.parentElement.style.display = "block";
   }
-
+  sessionStorage.setItem("previousPage", document.referrer);
   const $headerSearchInput = document.querySelector(".header__search-input");
   $searchForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export function initHeader() {
     const params = new URLSearchParams({
       query: input,
     });
-    window.location.href = `/?${params.toString()}`;
+    window.location.href = `/?${encodeURI(params)}`;
   });
 
   //마이페이지 클릭 토글
@@ -79,6 +79,8 @@ export function initHeader() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
+    sessionStorage.removeItem("orderList");
+    sessionStorage.removeItem("orderType");
     window.location.reload(true);
   });
 }
