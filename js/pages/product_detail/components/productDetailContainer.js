@@ -31,6 +31,43 @@ export function productDetail(productId) {
     }
   }
 
+  function updateMetaTags(data) {
+    if (!data) return;
+
+    // Open Graph (OG) Tags
+    setMetaTag("og:title", data.name);
+    setMetaTag("og:description", data.info);
+    setMetaTag("og:image", data.image);
+    setMetaTag("og:url", window.location.href);
+    setMetaTag("og:type", "product");
+
+    // Twitter Card Tags
+    setMetaTag("twitter:card", "summary_large_image");
+    setMetaTag("twitter:title", data.name);
+    setMetaTag("twitter:description", data.info);
+    setMetaTag("twitter:image", data.image);
+
+    // Standard Meta Tags
+    setMetaTag("description", data.info, true);
+    setMetaTag(
+      "keywords",
+      `${data.name}, ${data.seller.store_name}, 상품, 쇼핑`,
+      true
+    );
+  }
+
+  function setMetaTag(property, content, isNameTag = false) {
+    let tag = document.querySelector(
+      `meta[${isNameTag ? "name" : "property"}="${property}"]`
+    );
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute(isNameTag ? "name" : "property", property);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  }
+
   function renderProductDetail(data) {
     if (!data) {
       productDetailContainer.innerHTML = `<p>상품 정보를 불러올 수 없습니다.</p>`;
@@ -41,8 +78,8 @@ export function productDetail(productId) {
       ${getProductSummary(data)}
       ${renderQuantityAndPrice(data)}
       <div class="product-detail__actions">
-        <button type="button" class="product-detail__buy-now">바로 구매</button>
-        <button type="button" class="product-detail__add-to-cart">장바구니</button>
+        <button class="product-detail__buy-now">바로 구매</button>
+        <button class="product-detail__add-to-cart">장바구니</button>
       </div>
       </div> </div> 
     `;
