@@ -207,7 +207,8 @@ OpenMarketService/
 ```
 
 **\[화면 캡쳐\]**
-![alt text](<화면 기록 2025-07-29 오후 9.36.06-1.gif>)
+![화면 기록 2025-07-29 오후 9 36 06-1](https://github.com/user-attachments/assets/8cc664b7-2b29-41a8-9b03-e8199dd2358a)
+
 
 \<\!-- 로그인 페이지 화면 캡쳐 (성공, 실패, 경고 메시지 등) \--\>
 
@@ -254,6 +255,8 @@ OpenMarketService/
 
 **\[화면 캡쳐\]**
 
+![화면 기록 2025-07-29 오후 9 48 53](https://github.com/user-attachments/assets/7dd4de2c-c82c-44ad-8fa5-863eb1e5883a)
+
 \<\!-- 회원가입 페이지 화면 캡쳐 (성공, 유효성 검사 실패, 중복 확인 등) \--\>
 
 #### **3\) 상품 목록 페이지**
@@ -296,6 +299,10 @@ OpenMarketService/
 ```
 
 **\[화면 캡쳐\]**
+
+
+![화면 기록 2025-07-29 오후 9 55 55](https://github.com/user-attachments/assets/b810b3fd-dcc4-41ed-a6c5-055a619ba6fb)
+
 
 \<\!-- 상품 목록 페이지 화면 캡쳐 \--\>
 
@@ -360,6 +367,8 @@ OpenMarketService/
 
 \<\!-- 상품 상세 페이지 화면 캡쳐 (수량 변경, 가격 계산 등) \--\>
 
+![화면 기록 2025-07-29 오후 10 54 55](https://github.com/user-attachments/assets/524e24bb-2e6d-4e5b-9021-22204e222a86)
+
 #### **5\) 장바구니 페이지**
 
 **✅ 구현 완료된 기능:**
@@ -420,6 +429,9 @@ OpenMarketService/
 ```
 
 **\[화면 캡쳐\]**
+
+![화면 기록 2025-07-29 오후 10 56 29](https://github.com/user-attachments/assets/cb369fe6-c617-4c32-a6cc-19023fa295f6)
+
 
 \<\!-- 장바구니 페이지 화면 캡쳐 (모달, 수량 변경, 총 결제 금액 등) \--\>
 
@@ -486,6 +498,9 @@ OpenMarketService/
 
 \<\!-- GNB 화면 캡쳐 (로그인/비로그인 상태, 모달 등) \--\>
 
+![화면 기록 2025-07-29 오후 10 58 13](https://github.com/user-attachments/assets/8af13000-ada2-47b0-99d3-47d74c44d88f)
+
+
 #### **7\) 주문/결제 페이지**
 
 **✅ 구현 완료된 기능:**
@@ -550,6 +565,9 @@ OpenMarketService/
 
 **\[화면 캡쳐\]**
 
+![화면 기록 2025-07-29 오후 10 59 50](https://github.com/user-attachments/assets/311f75c8-ce9e-470d-a9a5-6d94092d97a5)
+
+
 \<\!-- 주문/결제 페이지 화면 캡쳐 (입력 폼, 결제 버튼 등) \--\>
 
 #### **8) 푸터 (Footer)**
@@ -570,6 +588,7 @@ OpenMarketService/
 ```
 
 **\[화면 캡쳐\]**
+<img width="1455" height="252" alt="스크린샷 2025-07-29 오후 11 02 48" src="https://github.com/user-attachments/assets/c35d7083-30f6-4148-b47b-3c90f6d5955e" />
 
 \<\!-- 푸터 화면 캡쳐 \--\>
 
