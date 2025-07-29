@@ -81,9 +81,15 @@ export function getActionButtons(productId, stock) {
       }
 
       const result = await response.json();
-      console.log("장바구니 추가 성공:", result);
-      alert("상품이 장바구니에 추가되었습니다.");
-      sessionStorage.removeItem("cartItemToAdd");
+      const confirmMoveToCart = confirm(
+        "상품이 장바구니에 추가되었습니다!\n장바구니 페이지로 이동하시겠습니까?"
+      );
+
+      if (confirmMoveToCart) {
+        window.location.href = "/pages/cart.html";
+      } else {
+        console.log("장바구니 이동을 취소했습니다.");
+      }
     } catch (error) {
       console.error("장바구니 추가 중 오류:", error);
       alert("장바구니 추가 중 오류가 발생했습니다.");
