@@ -1,4 +1,6 @@
-# **![img](./assets/icons/Logo-hodu.svg) OpenMarket - 프론트엔드 개발 프로젝트**
+# **🚀 OpenMarket - 프론트엔드 개발 프로젝트**
+
+![img](./assets/icons/Logo-hodu.svg)
 
 ## 🌟 프로젝트 개요
 
