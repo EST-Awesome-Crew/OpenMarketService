@@ -125,9 +125,6 @@ OpenMarketService/
 ├── css/                      # 컴파일된 CSS 파일
 │   └── main.css             # 메인 CSS 파일
 ├── scss/                     # Sass 소스 파일
-│   ├── abstracts/           # 변수, 믹스인, 함수
-│   │   ├── _mixins.scss
-│   │   └── _variables.scss
 │   ├── base/                # 기본 스타일 (reset, typography 등)
 │   │   ├── _base.scss
 │   │   └── _reset.scss
