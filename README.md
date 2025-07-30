@@ -120,25 +120,27 @@ GitHub Flow를 사용하며, main 브랜치에서 기능별/목적별 브랜치�
 ```
 OpenMarketService/
 ├── assets/                    # 정적 자원
+│   ├── fonts/                # 폰트 파일들
 │   ├── icons/                # 아이콘 파일들 (SVG, ICO 등)
 │   └── images/               # 이미지 파일들
 ├── css/                      # 컴파일된 CSS 파일
-│   └── main.css             # 메인 CSS 파일
+│   ├── main.css             # 메인 CSS 파일
+│   └── main.css.map             # 메인 CSS map 파일
 ├── scss/                     # Sass 소스 파일
 │   ├── base/                # 기본 스타일 (reset, typography 등)
 │   │   ├── _base.scss
+│   │   ├── _index.scss
+│   │   ├── _reset.scss
 │   │   └── _reset.scss
-│   ├── components/          # 컴포넌트별 스타일
-│   │   ├── _button.scss
-│   │   ├── _carousel.scss
+│   ├── layout/              # 레이아웃 스타일
 │   │   ├── _footer.scss
 │   │   ├── _header.scss
-│   │   └── _modal.scss
-│   ├── layout/              # 레이아웃 스타일
-│   │   └── _layout.scss
+│   │   └── _index.scss
 │   ├── pages/               # 페이지별 스타일
 │   │   ├── _cart.scss
 │   │   ├── _checkout.scss
+│   │   ├── _error.scss
+│   │   ├── _index.scss
 │   │   ├── _login.scss
 │   │   ├── _main.scss
 │   │   ├── _product.scss
@@ -146,7 +148,7 @@ OpenMarketService/
 │   └── main.scss            # 메인 Sass 파일
 ├── js/                      # JavaScript 파일
 │   ├── components/          # 공통 컴포넌트 JS
-│   │   └── footer.js
+│   │   └── header.js
 │   ├── pages/               # 페이지별 JS
 │   │   ├── cart/
 │   │   │   ├── compoents
@@ -161,6 +163,7 @@ OpenMarketService/
 │   │   │   └── login.js
 │   │   ├── main/
 │   │   │   ├── components/
+│   │   │   │   ├── renderProduct.js
 │   │   │   │   └── carousel.js
 │   │   │   └── main.js
 │   │   ├── product_detail
