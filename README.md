@@ -98,10 +98,15 @@ OpenMarketService/
 │   └── main.scss            # 메인 Sass 파일
 ├── js/                      # JavaScript 파일
 │   ├── components/          # 공통 컴포넌트 JS
-│   │   ├── footer.js
-│   │   └── header.js
+│   │   └── footer.js
 │   ├── pages/               # 페이지별 JS
 │   │   ├── cart/
+│   │   │   ├── compoents
+│   │   │   │   ├── calc.js
+│   │   │   │   └── render.js
+│   │   │   └── cart.js
+│   │   ├── checkout/
+│   │   │   └── checkout.js
 │   │   ├── login/
 │   │   │   ├── api.js
 │   │   │   ├── auth.js
@@ -110,7 +115,16 @@ OpenMarketService/
 │   │   │   ├── components/
 │   │   │   │   └── carousel.js
 │   │   │   └── main.js
-│   │   ├── product/
+│   │   ├── product_detail
+│   │   │   ├── components
+│   │   │   │   ├── getActionButtons.js
+│   │   │   │   ├── getProductSummary.js
+│   │   │   │   ├── menuTab.js
+│   │   │   │   ├── productDetailContainer.js
+│   │   │   │   ├── renderQuantityAndPrice.js
+│   │   │   │   ├── setQuantityAndPrice.js
+│   │   │   │   └── showLoginModal.js
+│   │   │   └── productDetail.js
 │   │   └── signup/
 │   │       ├── components/
 │   │       │   ├── IDvalidate.js
@@ -120,12 +134,21 @@ OpenMarketService/
 │   │       │   └── phoneNumberValidate.js
 │   │       └── signup.js
 │   └── utils/               # 유틸리티 함수
-├── pages/                   # HTML 페이지
+│        └── constants.js
+├── pages/   # HTML 페이지
+│   ├── components
+│   │   ├── footer.html
+│   │   ├── header-seller.html
+│   │   └── header.html
 │   ├── cart.html
 │   ├── checkout.html
 │   ├── login.html
-│   ├── product.html
+│   ├── error.html
+│   ├── product-detail.html
 │   └── signup.html
+├── .prettierrc
+├── .vscode
+│   └── settings.json
 ├── index.html               # 메인 페이지
 └── README.md               # 프로젝트 문서
 ```
@@ -140,7 +163,7 @@ OpenMarketService/
 - **상품 상세 페이지**
 - **장바구니 페이지**
 - **주문/결제 페이지**
-- **마이페이지 (UI만)**
+- **에러 페이지**
 
 ### **✨ 주요 기능 (API 명세 기반)**
 
@@ -208,7 +231,6 @@ OpenMarketService/
 
 **\[화면 캡쳐\]**
 ![화면 기록 2025-07-29 오후 9 36 06-1](https://github.com/user-attachments/assets/8cc664b7-2b29-41a8-9b03-e8199dd2358a)
-
 
 \<\!-- 로그인 페이지 화면 캡쳐 (성공, 실패, 경고 메시지 등) \--\>
 
@@ -300,9 +322,7 @@ OpenMarketService/
 
 **\[화면 캡쳐\]**
 
-
 ![화면 기록 2025-07-29 오후 9 55 55](https://github.com/user-attachments/assets/b810b3fd-dcc4-41ed-a6c5-055a619ba6fb)
-
 
 \<\!-- 상품 목록 페이지 화면 캡쳐 \--\>
 
@@ -432,7 +452,6 @@ OpenMarketService/
 
 ![화면 기록 2025-07-29 오후 10 56 29](https://github.com/user-attachments/assets/cb369fe6-c617-4c32-a6cc-19023fa295f6)
 
-
 \<\!-- 장바구니 페이지 화면 캡쳐 (모달, 수량 변경, 총 결제 금액 등) \--\>
 
 #### **6\) 페이지 상단 글로벌 네비게이션 영역 (GNB)**
@@ -500,7 +519,6 @@ OpenMarketService/
 
 ![화면 기록 2025-07-29 오후 10 58 13](https://github.com/user-attachments/assets/8af13000-ada2-47b0-99d3-47d74c44d88f)
 
-
 #### **7\) 주문/결제 페이지**
 
 **✅ 구현 완료된 기능:**
@@ -566,7 +584,6 @@ OpenMarketService/
 **\[화면 캡쳐\]**
 
 ![화면 기록 2025-07-29 오후 10 59 50](https://github.com/user-attachments/assets/311f75c8-ce9e-470d-a9a5-6d94092d97a5)
-
 
 \<\!-- 주문/결제 페이지 화면 캡쳐 (입력 폼, 결제 버튼 등) \--\>
 
