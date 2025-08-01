@@ -1,7 +1,7 @@
 import { isBuyer } from "../../user.js";
-import { toggleGNBEvent } from "./components/headerEventHandlers.js";
+import { toggleGNBEvent } from "../components/headerEventHandlers.js";
 //GNB 랜딩작업
-export default function getHeaderGNB(loginStatus) {
+export function getHeaderGNB(loginStatus) {
   const $headerMenu = document.querySelector(".header__menu");
   let $headerItem;
   const cart = `<li class="header__menu-item">

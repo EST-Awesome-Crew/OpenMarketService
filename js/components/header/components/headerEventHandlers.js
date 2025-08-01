@@ -1,4 +1,4 @@
-export default function searchGNBEvent() {
+export function searchGNBEvent() {
   // 검색기능
   const $searchForm = document.querySelector(".header__search-form");
   const $headerSearchInput = document.querySelector(".header__search-input");
@@ -17,8 +17,8 @@ export default function searchGNBEvent() {
     window.location.href = `/?${params}`;
   });
 }
-export default function toggleGNBEvent() {
-//마이페이지 클릭 토글
+export function toggleGNBEvent() {
+  //마이페이지 클릭 토글
   const $dropdown = document.querySelector(".dropdown");
   const $headerMyText = document.querySelectorAll(".header__menu-link");
   const $button = document.querySelector(".dropdown__button");
@@ -61,7 +61,7 @@ export default function toggleGNBEvent() {
     }
   });
 }
-export default function  logoutGNBEvent(){
+export function logoutGNBEvent() {
   const $logoutBtn = document.querySelector(".dropdown__logout");
   $logoutBtn.addEventListener("click", e => {
     const logout = logout();
