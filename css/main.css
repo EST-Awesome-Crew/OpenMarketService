@@ -200,9 +200,10 @@ strong {
   font-style: normal;
   font-display: swap;
 }
-.footer {
+#footer {
   background-color: #f9f9f9;
 }
+
 .footer__wrap, .footer__info {
   max-width: 1280px;
   margin: 0 auto;
@@ -261,7 +262,7 @@ strong {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.header {
+.header__wrap {
   display: flex;
   max-width: 1280px;
   justify-content: space-between;
@@ -269,9 +270,8 @@ strong {
   padding: 20px 20px 20px 0;
   margin: 0 auto;
 }
-.header__wrap {
+.header__logo-wrap {
   display: flex;
-  align-items: center;
 }
 .header__logo-img {
   margin-right: 30px;
