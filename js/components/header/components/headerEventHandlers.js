@@ -1,18 +1,6 @@
-import { getAccessToken } from "/js/pages/login/auth.js";
-export function initHeader() {
-  //헤더를 위한 js파일입니다.
-  //로그인 유무에따른 마이페이지 ,로그인 텍스트 변경
-  const $headerMenuLogin = document.querySelector(".header__menu-login");
-  const $headerDropdown = document.querySelector(".dropdown");
+export default function searchGNBEvent() {
+  // 검색기능
   const $searchForm = document.querySelector(".header__search-form");
-
-  const token = getAccessToken();
-  if (token) {
-    $headerDropdown.style.display = "block";
-  } else {
-    $headerMenuLogin.parentElement.parentElement.style.display = "block";
-  }
-  sessionStorage.setItem("previousPage", document.referrer);
   const $headerSearchInput = document.querySelector(".header__search-input");
   $searchForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -22,19 +10,18 @@ export function initHeader() {
       $headerSearchInput.focus();
       return;
     }
-
     // URLSearchParams로 변경
     const params = new URLSearchParams({
       query: input,
     });
     window.location.href = `/?${params}`;
   });
-
-  //마이페이지 클릭 토글
+}
+export default function toggleGNBEvent() {
+//마이페이지 클릭 토글
   const $dropdown = document.querySelector(".dropdown");
   const $headerMyText = document.querySelectorAll(".header__menu-link");
   const $button = document.querySelector(".dropdown__button");
-
   if ($button) {
     $button.addEventListener("click", e => {
       e.stopPropagation();
@@ -57,6 +44,7 @@ export function initHeader() {
         const $cartImg = document
           .querySelector(".header__menu-cart")
           .parentElement.querySelector("img");
+        //마이페이지 예외처리
         const currentPath = window.location.pathname;
         if (currentPath !== "/pages/cart.html") {
           $cartImg.src = "/assets/icons/icon-shopping-cart.svg";
@@ -66,21 +54,19 @@ export function initHeader() {
       }
     });
   }
-
   // 다른 영역 클릭 시 닫기
   document.addEventListener("click", e => {
     if ($dropdown && !$dropdown.contains(e.target)) {
       $dropdown.classList.remove("open");
     }
   });
-  //로그아웃
+}
+export default function  logoutGNBEvent(){
   const $logoutBtn = document.querySelector(".dropdown__logout");
   $logoutBtn.addEventListener("click", e => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("orderList");
-    sessionStorage.removeItem("orderType");
-    window.location.reload(true);
+    const logout = logout();
+    if (logout.success) {
+      window.location.reload(true);
+    }
   });
 }

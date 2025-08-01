@@ -48,11 +48,6 @@
   &__menu {
     display: flex;
     flex-direction: row;
-    &-item {
-      &:not(:first-child) {
-        display: none;
-      }
-    }
     &-item .header__menu-link {
       display: flex;
       flex-direction: column;

@@ -301,9 +301,6 @@ strong {
   display: flex;
   flex-direction: row;
 }
-.header__menu-item:not(:first-child) {
-  display: none;
-}
 .header__menu-item .header__menu-link {
   display: flex;
   flex-direction: column;

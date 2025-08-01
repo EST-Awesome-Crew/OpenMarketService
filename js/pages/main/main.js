@@ -1,5 +1,5 @@
 //메인 페이지 js파일입니다.
-import { initHeader } from "../../components/header.js"; //
+import { initHeader } from "../../components/header/header.js"; //
 import { carouselControl } from "./components/carousel.js";
 import { getProducts } from "./components/renderProduct.js";
 
