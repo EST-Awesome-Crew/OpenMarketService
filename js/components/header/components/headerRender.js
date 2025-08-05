@@ -1,5 +1,4 @@
-import { isBuyer } from "../../user.js";
-import { toggleGNBEvent } from "../components/headerEventHandlers.js";
+import { isBuyer } from "/js/components/user.js";
 //GNB 랜딩작업
 export function getHeaderGNB(loginStatus) {
   const $headerMenu = document.querySelector(".header__menu");
@@ -50,8 +49,6 @@ export function getHeaderGNB(loginStatus) {
     } else {
       $headerItem = mypage + seller;
     }
-    //GNB 토글기능
-    toggleGNBEvent();
   }
   $headerMenu.insertAdjacentHTML("beforeend", $headerItem);
 }

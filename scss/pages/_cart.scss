@@ -6,6 +6,7 @@
   margin: 0 auto;
   padding: 54px 0px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
+  display: none;
 
   &__title {
     font-size: 36px;
@@ -89,6 +90,14 @@
     border-radius: 6px;
     background: #fff;
     margin-bottom: 10px;
+
+    &__no-stock {
+      flex-shrink: 0;
+      position: absolute;
+      color: #eb5757;
+      font-size: 14px;
+      margin-top: 100px;
+    }
 
     &__checkbox-label {
       display: inline-flex;
@@ -248,17 +257,6 @@
         display: inline-block;
         width: 34px;
         height: 34px;
-        background: url("../../assets/icons/minus-icon_2.svg") no-repeat center /
-          contain;
-        position: absolute;
-        right: 0;
-        top: 10px;
-      }
-      &:nth-child(2)::after {
-        content: "";
-        display: inline-block;
-        width: 34px;
-        height: 34px;
         background: url("../../assets/icons/plus-icon_2.svg") no-repeat center /
           contain;
         position: absolute;
@@ -284,8 +282,7 @@
       font-family: "Spoqa Han Sans Neo", sans-serif;
       font-weight: 700;
       font-size: 24px;
-      &::after {
-        content: " 원";
+      & span {
         font-family: "Spoqa Han Sans Neo", sans-serif;
         font-weight: 400;
         font-size: 16px;

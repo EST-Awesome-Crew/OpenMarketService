@@ -1,9 +1,10 @@
-import { getTokenStatus } from "../../core/config.js";
 import {
   logoutGNBEvent,
   searchGNBEvent,
-} from "./components/headerEventHandlers.js";
-import { getHeaderGNB } from "./components/headerRender.js";
+  toggleGNBEvent,
+} from "/js/components/header/components/headerEventHandlers.js";
+import { getHeaderGNB } from "/js/components/header/components/headerRender.js";
+import { getTokenStatus } from "/js/core/config.js";
 export function initHeader() {
   //로그인 토큰 가져오기
   const loginStatus = getTokenStatus();
@@ -11,6 +12,10 @@ export function initHeader() {
   getHeaderGNB(loginStatus);
   // 검색기능
   searchGNBEvent();
-  //로그아웃
-  logoutGNBEvent();
+  if (loginStatus.hasAccessToken) {
+    //GNB 토글기능
+    toggleGNBEvent();
+    //로그아웃
+    logoutGNBEvent();
+  }
 }

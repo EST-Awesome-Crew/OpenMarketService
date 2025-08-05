@@ -1,3 +1,4 @@
+import { logout } from "/js/components/user.js";
 export function searchGNBEvent() {
   // 검색기능
   const $searchForm = document.querySelector(".header__search-form");
@@ -24,7 +25,7 @@ export function toggleGNBEvent() {
   const $button = document.querySelector(".dropdown__button");
   if ($button) {
     $button.addEventListener("click", e => {
-      e.stopPropagation();
+      e.preventDefault();
       $dropdown.classList.toggle("open");
 
       if ($dropdown.classList.contains("open")) {
@@ -64,8 +65,8 @@ export function toggleGNBEvent() {
 export function logoutGNBEvent() {
   const $logoutBtn = document.querySelector(".dropdown__logout");
   $logoutBtn.addEventListener("click", e => {
-    const logout = logout();
-    if (logout.success) {
+    if (logout().success) {
+      alert("로그아웃 되었습니다.");
       window.location.reload(true);
     }
   });

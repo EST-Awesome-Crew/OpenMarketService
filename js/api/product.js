@@ -1,4 +1,4 @@
-import { request } from "../core/config.js";
+import { request } from "/js/core/config.js";
 
 /**
  * 모든 상품 목록 조회
@@ -78,4 +78,18 @@ export async function deleteProduct(productId) {
   return await request(`/products/${productId}/`, {
     method: "DELETE",
   });
+}
+/**
+ * 상품 재고
+ * @param {number|string} productId - 삭제할 상품 ID
+ * @returns {number|string} 재고 수량 전달
+ */
+export async function checkStock(id) {
+  const result = await request(`/products/${id}`, {
+    method: "GET",
+  });
+  const response = await result;
+  const data = await response.data;
+  if (!result) return false;
+  return data.stock;
 }

@@ -1,4 +1,4 @@
-import { refreshToken, request, setTokens } from "../core/config.js";
+import { request, setTokens } from "/js/core/config.js";
 
 /**
  * 로그인
@@ -14,27 +14,6 @@ export async function login(username, password) {
 
   if (result.success) {
     setTokens(result.data.access, result.data.refresh, result.data.user);
-  }
-
-  return result;
-}
-
-/**
- * AccessToken 갱신
- * @returns {Promise<Object>} API 응답 결과
- */
-export async function refreshAccessToken() {
-  if (!refreshToken) {
-    return { success: false, error: "No refresh token available" };
-  }
-
-  const result = await request("/accounts/token/refresh/", {
-    method: "POST",
-    body: JSON.stringify({ refresh: refreshToken }),
-  });
-
-  if (result.success) {
-    setTokens(result.data.access, refreshToken);
   }
 
   return result;
